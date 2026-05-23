@@ -1,50 +1,63 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>SYSTEM CRITICAL</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astore Resource Portal | Muhammad Nazim</title>
     <style>
-        body { background: #000; color: #f00; font-family: 'Courier New', monospace; margin: 0; overflow: hidden; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: none; transition: background 0.1s; }
-        #timer { font-size: 8rem; font-weight: bold; }
-        .alert { border: 4px solid #f00; padding: 40px; background: rgba(255,0,0,0.2); text-align: center; }
-        @keyframes flash { 0% { background: #000; } 50% { background: #300; } 100% { background: #000; } }
-        .flash-active { animation: flash 0.2s infinite; }
-        @keyframes shake { 0% { transform: translate(1px, 1px); } 100% { transform: translate(-1px, -1px); } }
-        .shake-active { animation: shake 0.1s infinite; }
+        :root { --primary: #2c3e50; --accent: #3498db; --light: #f4f7f6; }
+        body { font-family: 'Segoe UI', sans-serif; line-height: 1.6; margin: 0; background: var(--light); color: #333; }
+        header { background: var(--primary); color: #fff; padding: 2rem; text-align: center; }
+        nav { display: flex; justify-content: center; gap: 20px; background: #fff; padding: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .container { max-width: 800px; margin: 20px auto; padding: 20px; background: #fff; border-radius: 8px; }
+        .feature-card { border-left: 5px solid var(--accent); padding: 15px; margin: 15px 0; background: #f9f9f9; }
+        img { width: 100%; border-radius: 5px; margin-top: 10px; }
+        footer { text-align: center; padding: 20px; font-size: 0.9rem; color: #777; }
     </style>
 </head>
-<body onclick="makeFullScreen()" class="flash-active shake-active">
+<body>
 
-    <div class="alert">
-        <h1>SYSTEM HACKED!</h1>
-        <div id="timer">10</div>
-        <p id="status">INTRUDER DETECTED IN LOCAL NETWORK...</p>
-    </div>
+<header>
+    <h1>Astore Resource Portal</h1>
+    <p>Empowering Our Community | Designed by Muhammad Nazim</p>
+</header>
 
-    <script>
-        function makeFullScreen() { document.documentElement.requestFullscreen(); }
+<nav>
+    <a href="#fitness">Fitness</a>
+    <a href="#edu">Education</a>
+    <a href="#info">Community</a>
+</nav>
 
-        let count = 10;
-        const timerDisplay = document.getElementById('timer');
-        const statusText = document.getElementById('status');
-        
-        const interval = setInterval(() => {
-            count--;
-            timerDisplay.innerText = count;
-            
-            // Random terminal messages
-            const msgs = ["ACCESSING DATA...", "BYPASSING FIREWALL...", "SYSTEM CORRUPTION 45%...", "TARGET LOCKED..."];
-            statusText.innerText = msgs[Math.floor(Math.random() * msgs.length)];
+<div class="container">
+    <section id="fitness">
+        <h2>🏋️ Fitness & Wellness</h2>
+        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=80" alt="Fitness">
+        <div class="feature-card">
+            <h3>Daily Tips</h3>
+            <p>Consistency is key. Focus on hydration and natural nutrition available here in Astore.</p>
+        </div>
+    </section>
 
-            if (count % 2 === 0) { alert("SECURITY BREACH ALERT!"); }
+    <section id="edu">
+        <h2>📚 Educational Support</h2>
+        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800&q=80" alt="Education">
+        <div class="feature-card">
+            <h3>Learn with Us</h3>
+            <p>Resources for basic English and Mathematics to help our local students excel.</p>
+        </div>
+    </section>
 
-            if (count <= 0) {
-                clearInterval(interval);
-                alert("Prank complete, sweetie! Everything is secure again. 😄");
-                location.reload();
-            }
-        }, 1000);
+    <section id="info">
+        <h2>📍 Community Info</h2>
+        <div class="feature-card">
+            <h3>Astore Resources</h3>
+            <p>Emergency contacts and local services at your fingertips.</p>
+        </div>
+    </section>
+</div>
 
-        document.addEventListener('contextmenu', event => event.preventDefault());
-    </script>
+<footer>
+    <p>&copy; 2026 Astore Resource Portal. Developed with care by Muhammad Nazim.</p>
+</footer>
+
 </body>
 </html>
