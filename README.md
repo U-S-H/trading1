@@ -1,214 +1,277 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <title>AKBAR GROUPS | Builders & Real Estate - Premium Demo</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&display=swap');
-        
-        body { font-family: 'Inter', sans-serif; background: #fafafa; color: #1a1a1a; scroll-behavior: smooth; }
-        .font-luxury { font-family: 'Cinzel', serif; }
-        
-        .hero-section {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1582407947304-fd86f028f716?q=80&w=1596&auto=format&fit=crop');
-            background-size: cover; background-position: center;
-            height: 90vh;
-        }
-        
-        .gold-gradient {
-            background: linear-gradient(135deg, #c5a059 0%, #947231 100%);
-        }
-        
-        .nav-glass {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-        }
+<p align="center">
+  <a href="https://www.npmjs.com/package/jest"><img src="https://img.shields.io/npm/v/jest" alt="npm version"></a>
+  <a href="https://github.com/jestjs/jest/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="Jest is released under the MIT license."></a>
+  <a href="https://twitter.com/intent/follow?screen_name=jestjs_"><img src="https://img.shields.io/twitter/follow/jestjs_.svg?style=social&label=Follow%20@jestjs_" alt="Follow on Twitter" /></a>
+</p>
+<p align="center">
+  <a href="https://github.com/jestjs/jest/actions/workflows/nodejs.yml"><img alt="GitHub CI Status" src="https://img.shields.io/github/actions/workflow/status/jestjs/jest/nodejs.yml?label=CI&logo=GitHub"></a>
+  <a href="https://codecov.io/github/jestjs/jest"><img alt="Coverage Status" src="https://img.shields.io/codecov/c/github/jestjs/jest/main.svg?maxAge=43200"></a>
+</p>
+<p align="center">
+  <a href="https://gitpod.io/#https://github.com/jestjs/jest"><img alt="Gitpod ready-to-code" src="https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod"></a>
+</p>
 
-        .card-hover:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-        }
-        .transition-all-300 { transition: all 0.3s ease; }
-    </style>
-</head>
-<body>
+<!-- A spacer -->
+<p>&nbsp;</p>
 
-    <a href="https://wa.me/YOUR_NUMBER" target="_blank" class="fixed bottom-10 right-10 z-[100] bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-all-300 flex items-center justify-center">
-        <i class="fa-brands fa-whatsapp text-3xl"></i>
-    </a>
+<p align="center"><img src="website/static/img/jest-readme-headline.png" width="80%"/></p>
 
-    <nav class="fixed w-full z-50 px-6 md:px-10 py-5 flex justify-between items-center nav-glass">
-        <div class="flex flex-col">
-            <h1 class="font-luxury text-xl md:text-2xl font-bold tracking-widest text-[#947231]">AKBAR GROUPS</h1>
-            <span class="text-[9px] uppercase tracking-[0.3em] font-bold opacity-70">Builders & Real Estate</span>
-        </div>
-        <div class="hidden lg:flex gap-10 text-[11px] font-bold uppercase tracking-wider">
-            <a href="#" class="hover:text-[#947231] transition-all-300">Home</a>
-            <a href="#projects" class="hover:text-[#947231] transition-all-300">Projects</a>
-            <a href="#calculator" class="hover:text-[#947231] transition-all-300">ROI Tool</a>
-            <a href="#contact" class="hover:text-[#947231] transition-all-300">Contact Us</a>
-        </div>
-        <button class="gold-gradient text-white px-6 py-2 md:px-8 md:py-3 rounded-sm text-[10px] font-bold uppercase tracking-widest shadow-lg">Inquire Now</button>
-    </nav>
+<h2 align="center">🃏 Delightful JavaScript Testing</h2>
 
-    <section class="hero-section flex items-center px-10 md:px-24">
-        <div class="max-w-3xl">
-            <h2 class="text-white text-[10px] md:text-[12px] uppercase tracking-[0.5em] font-bold mb-6">Redefining Luxury Living</h2>
-            <h3 class="font-luxury text-white text-4xl md:text-7xl mb-8 leading-tight">Crafting Legacies <br> <span class="text-[#c5a059]">Since Decades</span></h3>
-            <p class="text-gray-300 text-base md:text-lg mb-10 font-light leading-relaxed max-w-xl">From premium residential plots to state-of-the-art commercial hubs in Rawalpindi & Islamabad.</p>
-            <div class="flex flex-wrap gap-4">
-                <button class="gold-gradient text-white px-8 py-4 font-bold uppercase text-[10px] tracking-widest">Explore Projects</button>
-                <button class="border border-white/30 text-white px-8 py-4 font-bold uppercase text-[10px] tracking-widest hover:bg-white hover:text-black transition-all-300">Download Brochure</button>
-            </div>
-        </div>
-    </section>
+**👩🏻‍💻 Developer Ready**: A comprehensive JavaScript testing solution. Works out of the box for most JavaScript projects.
 
-    <section class="py-16 px-10 grid grid-cols-2 md:grid-cols-4 gap-10 text-center bg-white border-b">
-        <div>
-            <h4 class="font-luxury text-3xl font-bold text-[#947231]">5.0</h4>
-            <p class="text-[10px] uppercase font-bold tracking-widest mt-2">Star Rating</p>
-        </div>
-        <div>
-            <h4 class="font-luxury text-3xl font-bold text-[#947231]">88+</h4>
-            <p class="text-[10px] uppercase font-bold tracking-widest mt-2">Verified Reviews</p>
-        </div>
-        <div>
-            <h4 class="font-luxury text-3xl font-bold text-[#947231]">500+</h4>
-            <p class="text-[10px] uppercase font-bold tracking-widest mt-2">Projects Delivered</p>
-        </div>
-        <div>
-            <h4 class="font-luxury text-3xl font-bold text-[#947231]">40+</h4>
-            <p class="text-[10px] uppercase font-bold tracking-widest mt-2">Years Excellence</p>
-        </div>
-    </section>
+**🏃🏽 Instant Feedback**: Fast, interactive watch mode only runs test files related to changed files.
 
-    <section id="projects" class="py-24 px-10 md:px-24 bg-[#f4f4f4]">
-        <div class="flex flex-col md:flex-row justify-between items-end mb-16">
-            <div>
-                <span class="text-[#947231] font-bold uppercase tracking-widest text-xs">Portfolio</span>
-                <h2 class="font-luxury text-3xl md:text-4xl mt-4">Featured Developments</h2>
-            </div>
-            <button class="text-[11px] font-bold border-b-2 border-[#947231] pb-1 uppercase tracking-widest mt-4">View Full Catalog</button>
-        </div>
+**📸 Snapshot Testing**: Capture snapshots of large objects to simplify testing and to analyze how they change over time.
 
-        <div class="grid md:grid-cols-3 gap-8">
-            <div class="bg-white rounded-lg overflow-hidden card-hover transition-all-300">
-                <div class="h-64 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1470&auto=format&fit=crop');"></div>
-                <div class="p-8">
-                    <span class="text-[9px] gold-gradient text-white px-3 py-1 rounded-full font-bold uppercase">Commercial</span>
-                    <h5 class="font-luxury text-xl mt-4 mb-2">Modern Business Hub</h5>
-                    <p class="text-gray-500 text-sm mb-6">Prime location in Bahria Town Phase 7, Islamabad.</p>
-                    <div class="flex justify-between items-center pt-6 border-t">
-                        <span class="font-bold text-[#947231]">Starting PKR 25M</span>
-                        <i class="fa-solid fa-arrow-right text-gray-300"></i>
-                    </div>
-                </div>
-            </div>
+<p align="right"><em>See more on <a href="https://jestjs.io">jestjs.io</a></em></p>
 
-            <div class="bg-white rounded-lg overflow-hidden card-hover transition-all-300 border-t-4 border-[#c5a059]">
-                <div class="h-64 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=1475&auto=format&fit=crop');"></div>
-                <div class="p-8">
-                    <span class="text-[9px] gold-gradient text-white px-3 py-1 rounded-full font-bold uppercase">Residential</span>
-                    <h5 class="font-luxury text-xl mt-4 mb-2">The Royal Villa</h5>
-                    <p class="text-gray-500 text-sm mb-6">Luxury Mansion in DHA with bespoke interiors.</p>
-                    <div class="flex justify-between items-center pt-6 border-t">
-                        <span class="font-bold text-[#947231]">Starting PKR 150M</span>
-                        <i class="fa-solid fa-arrow-right text-gray-300"></i>
-                    </div>
-                </div>
-            </div>
+## Table of Contents
 
-            <div class="bg-white rounded-lg overflow-hidden card-hover transition-all-300">
-                <div class="h-64 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1470&auto=format&fit=crop');"></div>
-                <div class="p-8">
-                    <span class="text-[9px] gold-gradient text-white px-3 py-1 rounded-full font-bold uppercase">Apartment</span>
-                    <h5 class="font-luxury text-xl mt-4 mb-2">Skyline Residency</h5>
-                    <p class="text-gray-500 text-sm mb-6">Penthouse with panoramic views of Margalla Hills.</p>
-                    <div class="flex justify-between items-center pt-6 border-t">
-                        <span class="font-bold text-[#947231]">Starting PKR 45M</span>
-                        <i class="fa-solid fa-arrow-right text-gray-300"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+- [Getting Started](#getting-started)
+- [Running from command line](#running-from-command-line)
+- [Additional Configuration](#additional-configuration)
+  - [Generate a basic configuration file](#generate-a-basic-configuration-file)
+  - [Using Babel](#using-babel)
+  - [Using webpack](#using-webpack)
+  - [Using Vite](#using-vite)
+  - [Using Parcel](#using-parcel)
+  - [Using Typescript](#using-typescript)
+- [Documentation](#documentation)
+- [Badge](#badge)
+- [Contributing](#contributing)
+  - [Code of Conduct](#code-of-conduct)
+  - [Contributing Guide](#contributing-guide)
+  - [Good First Issues](#good-first-issues)
+- [Credits](#credits)
+  - [Backers](#backers)
+  - [Sponsors](#sponsors)
+- [License](#license)
+- [Copyright](#copyright)
 
-    <section id="calculator" class="py-24 px-6 md:px-10 bg-white">
-        <div class="max-w-4xl mx-auto p-8 md:p-12 rounded-[2rem] border border-[#947231]/20 shadow-2xl bg-gray-50">
-            <div class="text-center mb-10">
-                <span class="text-[#947231] font-bold uppercase tracking-widest text-xs">Investors Corner</span>
-                <h2 class="font-luxury text-3xl mt-2 text-gray-800">Projected ROI Calculator</h2>
-                <p class="text-gray-500 text-sm mt-3">Estimate your future property value with Akbar Groups 15% annual growth model.</p>
-            </div>
+## Getting Started
 
-            <div class="grid md:grid-cols-2 gap-8">
-                <div>
-                    <label class="block text-[10px] font-bold uppercase tracking-widest mb-2 text-gray-500">Investment Amount (PKR)</label>
-                    <input id="investAmount" type="number" placeholder="Enter amount..." class="w-full bg-white border border-gray-200 p-4 rounded-xl outline-none focus:border-[#947231] transition-all-300 shadow-sm">
-                </div>
-                <div>
-                    <label class="block text-[10px] font-bold uppercase tracking-widest mb-2 text-gray-500">Growth Duration</label>
-                    <select id="years" class="w-full bg-white border border-gray-200 p-4 rounded-xl outline-none focus:border-[#947231] transition-all-300 shadow-sm">
-                        <option value="1">1 Year Plan</option>
-                        <option value="3">3 Year Plan</option>
-                        <option value="5">5 Year Plan</option>
-                        <option value="10">10 Year Plan</option>
-                    </select>
-                </div>
-            </div>
+<!-- copied from Getting Started docs, links updated to point to Jest website -->
 
-            <button onclick="calculateROI()" class="gold-gradient w-full text-white py-5 rounded-xl font-bold uppercase tracking-widest text-[11px] mt-8 shadow-xl hover:scale-[1.01] transition-all-300">Calculate Projected Value</button>
-            
-            <div id="roiResult" class="mt-10 text-center hidden p-6 bg-white border border-[#947231]/10 rounded-2xl">
-                <p class="text-gray-500 text-[10px] uppercase tracking-widest font-bold">Estimated Future Market Value</p>
-                <h4 id="futureValue" class="text-4xl font-luxury text-[#947231] mt-2"></h4>
-                <p class="text-gray-400 text-[9px] mt-2 uppercase">*Based on premium development market trends.</p>
-            </div>
-        </div>
-    </section>
+Install Jest using [`yarn`](https://yarnpkg.com/en/package/jest):
 
-    <section id="contact" class="py-24 text-center bg-[#111] px-10">
-        <h2 class="font-luxury text-white text-3xl md:text-4xl mb-6">Ready to Build Your Legacy?</h2>
-        <p class="text-gray-400 mb-10 max-w-2xl mx-auto italic font-light">"Four decades of unmatched construction quality and transparent real estate solutions."</p>
-        <div class="flex flex-wrap justify-center gap-6">
-            <button class="gold-gradient text-white px-10 py-5 font-bold uppercase text-[10px] tracking-widest shadow-2xl">Book Consultation</button>
-            <button class="bg-transparent border border-gray-600 text-white px-10 py-5 font-bold uppercase text-[10px] tracking-widest hover:bg-white hover:text-black transition-all-300">View Office Locations</button>
-        </div>
-    </section>
+```bash
+yarn add --dev jest
+```
 
-    <footer class="bg-black py-10 px-10 text-white/40 border-t border-white/5">
-        <div class="flex flex-col md:flex-row justify-between items-center">
-            <div class="flex flex-col items-center md:items-start">
-                <h1 class="font-luxury text-lg tracking-widest text-white/60">AKBAR GROUPS</h1>
-                <p class="text-[8px] uppercase tracking-[0.2em] mt-1">Builders & Real Estate</p>
-            </div>
-            <p class="text-[9px] uppercase tracking-widest mt-6 md:mt-0">© 2026 Developed for Akbar Groups | High-End Digital Solutions</p>
-        </div>
-    </footer>
+Or [`npm`](https://www.npmjs.com/package/jest):
 
-    <script>
-        function calculateROI() {
-            const amount = parseFloat(document.getElementById('investAmount').value);
-            const years = parseInt(document.getElementById('years').value);
-            
-            if(amount > 0) {
-                const rate = 0.15;
-                const futureValue = amount * Math.pow((1 + rate), years);
-                
-                const resultDiv = document.getElementById('roiResult');
-                const futureValueText = document.getElementById('futureValue');
-                
-                resultDiv.classList.remove('hidden');
-                futureValueText.innerText = "PKR " + Math.round(futureValue).toLocaleString();
-                
-                resultDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            } else {
-                alert("Please enter a valid investment amount.");
-            }
-        }
-    </script>
-</body>
-</html>
+```bash
+npm install --save-dev jest
+```
+
+Note: Jest documentation uses `yarn` commands, but `npm` will also work. You can compare `yarn` and `npm` commands in the [yarn docs, here](https://yarnpkg.com/en/docs/migrating-from-npm#toc-cli-commands-comparison).
+
+Let's get started by writing a test for a hypothetical function that adds two numbers. First, create a `sum.js` file:
+
+```javascript
+function sum(a, b) {
+  return a + b;
+}
+module.exports = sum;
+```
+
+Then, create a file named `sum.test.js`. This will contain our actual test:
+
+```javascript
+const sum = require('./sum');
+
+test('adds 1 + 2 to equal 3', () => {
+  expect(sum(1, 2)).toBe(3);
+});
+```
+
+Add the following section to your `package.json`:
+
+```json
+{
+  "scripts": {
+    "test": "jest"
+  }
+}
+```
+
+Finally, run `yarn test` or `npm test` and Jest will print this message:
+
+```bash
+PASS  ./sum.test.js
+✓ adds 1 + 2 to equal 3 (5ms)
+```
+
+**You just successfully wrote your first test using Jest!**
+
+This test used `expect` and `toBe` to test that two values were exactly identical. To learn about the other things that Jest can test, see [Using Matchers](https://jestjs.io/docs/using-matchers).
+
+## Running from command line
+
+You can run Jest directly from the CLI (if it's globally available in your `PATH`, e.g. by `yarn global add jest` or `npm install jest --global`) with a variety of useful options.
+
+Here's how to run Jest on files matching `my-test`, using `config.json` as a configuration file and display a native OS notification after the run:
+
+```bash
+jest my-test --notify --config=config.json
+```
+
+If you'd like to learn more about running `jest` through the command line, take a look at the [Jest CLI Options](https://jestjs.io/docs/cli) page.
+
+## Additional Configuration
+
+### Generate a basic configuration file
+
+Based on your project, Jest will ask you a few questions and will create a basic configuration file with a short description for each option:
+
+```bash
+yarn create jest
+```
+
+### Using Babel
+
+To use [Babel](https://babeljs.io/), install required dependencies via `yarn`:
+
+```bash
+yarn add --dev babel-jest @babel/core @babel/preset-env
+```
+
+Configure Babel to target your current version of Node by creating a `babel.config.js` file in the root of your project:
+
+```javascript
+// babel.config.js
+module.exports = {
+  presets: [['@babel/preset-env', {targets: {node: 'current'}}]],
+};
+```
+
+The ideal configuration for Babel will depend on your project. See [Babel's docs](https://babeljs.io/docs/en/) for more details.
+
+<details>
+  <summary markdown="span"><strong>Making your Babel config jest-aware</strong></summary>
+
+Jest will set `process.env.NODE_ENV` to `'test'` if it's not set to something else. You can use that in your configuration to conditionally setup only the compilation needed for Jest, e.g.
+
+```javascript
+// babel.config.js
+module.exports = api => {
+  const isTest = api.env('test');
+  // You can use isTest to determine what presets and plugins to use.
+
+  return {
+    // ...
+  };
+};
+```
+
+> Note: `babel-jest` is automatically installed when installing Jest and will automatically transform files if a babel configuration exists in your project. To avoid this behavior, you can explicitly reset the `transform` configuration option:
+
+```javascript
+// jest.config.js
+module.exports = {
+  transform: {},
+};
+```
+
+</details>
+
+<!-- Note that the Babel 6 section in the Getting Started was removed -->
+
+### Using webpack
+
+Jest can be used in projects that use [webpack](https://webpack.js.org/) to manage assets, styles, and compilation. webpack does offer some unique challenges over other tools. Refer to the [webpack guide](https://jestjs.io/docs/webpack) to get started.
+
+### Using Vite
+
+Jest can be used in projects that use [vite](https://vitejs.dev/) to serves source code over native ESM to provide some frontend tooling, vite is an opinionated tool and does offer some out-of-the box workflows. Jest is not fully supported by vite due to how the [plugin system](https://github.com/vitejs/vite/issues/1955#issuecomment-776009094) from vite works, but there is some working examples for first-class jest integration using the `vite-jest`, since this is not fully supported, you might as well read the [limitation of the `vite-jest`](https://github.com/sodatea/vite-jest/tree/main/packages/vite-jest#limitations-and-differences-with-commonjs-tests). Refer to the [vite guide](https://vitejs.dev/guide/) to get started.
+
+### Using Parcel
+
+Jest can be used in projects that use [parcel-bundler](https://parceljs.org/) to manage assets, styles, and compilation similar to webpack. Parcel requires zero configuration. Refer to the official [docs](https://parceljs.org/docs/) to get started.
+
+### Using TypeScript
+
+Jest supports TypeScript, via Babel. First, make sure you followed the instructions on [using Babel](#using-babel) above. Next, install the `@babel/preset-typescript` via `yarn`:
+
+```bash
+yarn add --dev @babel/preset-typescript
+```
+
+Then add `@babel/preset-typescript` to the list of presets in your `babel.config.js`.
+
+```diff
+// babel.config.js
+module.exports = {
+  presets: [
+    ['@babel/preset-env', {targets: {node: 'current'}}],
++    '@babel/preset-typescript',
+  ],
+};
+```
+
+However, there are some [caveats](https://babeljs.io/docs/en/babel-plugin-transform-typescript#caveats) to using TypeScript with Babel. Because TypeScript support in Babel is purely transpilation, Jest will not type-check your tests as they are run. If you want that, you can use [ts-jest](https://github.com/kulshekhar/ts-jest) instead, or just run the TypeScript compiler [tsc](https://www.typescriptlang.org/docs/handbook/compiler-options.html) separately (or as part of your build process).
+
+<!-- end copied -->
+
+## Documentation
+
+Learn more about using [Jest on the official site!](https://jestjs.io)
+
+- [Getting Started](https://jestjs.io/docs/getting-started)
+- [Guides](https://jestjs.io/docs/snapshot-testing)
+- [API Reference](https://jestjs.io/docs/api)
+- [Configuring Jest](https://jestjs.io/docs/configuration)
+
+## Badge
+
+Show the world you're using _Jest_ `→` [![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/jestjs/jest) [![jest tested](https://img.shields.io/badge/Jest-tested-eee.svg?logo=jest&labelColor=99424f)](https://github.com/jestjs/jest) [![jest](https://jestjs.io/img/jest-badge.svg)](https://github.com/jestjs/jest)
+
+<!-- prettier-ignore -->
+```md
+[![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg?logo=jest)](https://github.com/jestjs/jest)
+[![jest tested](https://img.shields.io/badge/Jest-tested-eee.svg?logo=jest&labelColor=99424f)](https://github.com/jestjs/jest)
+[![jest](https://jestjs.io/img/jest-badge.svg)](https://github.com/jestjs/jest)
+```
+
+## Contributing
+
+Development of Jest happens in the open on GitHub, and we are grateful to the community for contributing bugfixes and improvements. Read below to learn how you can take part in improving Jest.
+
+### [Code of Conduct](https://code.facebook.com/codeofconduct)
+
+Facebook has adopted a Code of Conduct that we expect project participants to adhere to. Please read [the full text](https://code.facebook.com/codeofconduct) so that you can understand what actions will and will not be tolerated.
+
+### [Contributing Guide](CONTRIBUTING.md)
+
+Read our [contributing guide](CONTRIBUTING.md) to learn about our development process, how to propose bugfixes and improvements, and how to build and test your changes to Jest.
+
+### [Good First Issues](https://github.com/jestjs/jest/labels/good%20first%20issue)
+
+To help you get your feet wet and get you familiar with our contribution process, we have a list of [good first issues](https://github.com/jestjs/jest/labels/good%20first%20issue) that contain bugs which have a relatively limited scope. This is a great place to get started.
+
+## Credits
+
+This project exists thanks to all the people who [contribute](CONTRIBUTING.md).
+
+<a href="https://github.com/jestjs/jest/graphs/contributors"><img src="https://opencollective.com/jest/contributors.svg?width=890&button=false" /></a>
+
+### [Backers](https://opencollective.com/jest#backer)
+
+Thank you to all our backers! 🙏
+
+<a href="https://opencollective.com/jest#backers" target="_blank"><img src="https://opencollective.com/jest/backers.svg?width=890"></a>
+
+### [Sponsors](https://opencollective.com/jest#sponsor)
+
+Support this project by becoming a sponsor. Your logo will show up here with a link to your website.
+
+<a href="https://opencollective.com/jest/sponsor/0/website" target="_blank"><img src="https://opencollective.com/jest/sponsor/0/avatar.svg"></a> <a href="https://opencollective.com/jest/sponsor/1/website" target="_blank"><img src="https://opencollective.com/jest/sponsor/1/avatar.svg"></a> <a href="https://opencollective.com/jest/sponsor/2/website" target="_blank"><img src="https://opencollective.com/jest/sponsor/2/avatar.svg"></a> <a href="https://opencollective.com/jest/sponsor/3/website" target="_blank"><img src="https://opencollective.com/jest/sponsor/3/avatar.svg"></a> <a href="https://opencollective.com/jest/sponsor/4/website" target="_blank"><img src="https://opencollective.com/jest/sponsor/4/avatar.svg"></a> <a href="https://opencollective.com/jest/sponsor/5/website" target="_blank"><img src="https://opencollective.com/jest/sponsor/5/avatar.svg"></a> <a href="https://opencollective.com/jest/sponsor/6/website" target="_blank"><img src="https://opencollective.com/jest/sponsor/6/avatar.svg"></a> <a href="https://opencollective.com/jest/sponsor/7/website" target="_blank"><img src="https://opencollective.com/jest/sponsor/7/avatar.svg"></a> <a href="https://opencollective.com/jest/sponsor/8/website" target="_blank"><img src="https://opencollective.com/jest/sponsor/8/avatar.svg"></a> <a href="https://opencollective.com/jest/sponsor/9/website" target="_blank"><img src="https://opencollective.com/jest/sponsor/9/avatar.svg"></a>
+
+## License
+
+Jest is [MIT licensed](./LICENSE).
+
+## Copyright
+
+Copyright Contributors to the Jest project.
