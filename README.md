@@ -1,50 +1,59 @@
-<html lang="en">
+<html>
 <head>
     <style>
-        body { background: #000; color: #0f0; font-family: 'Courier New', Courier, monospace; padding: 15px; margin: 0; overflow-x: hidden; }
-        h1 { color: #f00; text-align: center; animation: blink 0.5s infinite; }
-        @keyframes blink { 50% { opacity: 0; } }
-        .box { border: 1px solid #0f0; padding: 10px; margin-bottom: 10px; }
-        .progress-bar { width: 100%; background: #222; height: 15px; margin: 5px 0; }
-        .fill { height: 100%; background: #0f0; width: 0%; transition: width 0.5s; }
-        #logs { font-size: 12px; height: 150px; overflow: hidden; border: 1px solid #333; padding: 5px; }
+        body { background: #000; color: #00FF41; font-family: 'Courier New', monospace; margin: 0; overflow: hidden; text-align: center; }
+        canvas { position: absolute; top: 0; left: 0; z-index: 1; }
+        #shock-screen { position: fixed; top:0; left:0; width: 100%; height: 100%; background: red; color: white; display: flex; align-items: center; justify-content: center; font-size: 30px; font-weight: bold; z-index: 999; animation: flash 0.3s infinite; }
+        @keyframes flash { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+        #content { position: relative; z-index: 2; padding: 20px; }
+        .hidden { display: none !important; }
+        #logs { text-align: left; background: rgba(0,0,0,0.8); padding: 10px; height: 200px; overflow-y: hidden; border: 1px solid #0f0; }
+        #success { display: none; font-size: 40px; color: #0f0; margin-top: 100px; }
     </style>
 </head>
 <body>
-    <h1>!!! SYSTEM SECURITY BREACH !!!</h1>
-    
-    <div class="box">
-        <div>Target: FACEBOOK_DB_ACCESS</div>
-        <div class="progress-bar"><div class="fill" id="bar1"></div></div>
-        
-        <div>Target: WHATSAPP_ENCRYPTION</div>
-        <div class="progress-bar"><div class="fill" id="bar2"></div></div>
-        
-        <div>Target: SNAPCHAT_DATA_SYNC</div>
-        <div class="progress-bar"><div class="fill" id="bar3"></div></div>
+
+    <div id="shock-screen">!!! DANGER: SYSTEM COMPROMISED !!!</div>
+
+    <div id="content">
+        <h1>SYSTEM OVERRIDE INITIATED</h1>
+        <div id="logs"></div>
     </div>
 
-    <div id="logs"></div>
+    <div id="success">✔ DATA EXFILTRATED SUCCESSFULLY</div>
+
+    <canvas id="matrix"></canvas>
 
     <script>
-        // Progress Bars
-        function startBar(id, speed) {
-            let width = 0;
-            let bar = document.getElementById(id);
-            let interval = setInterval(() => {
-                if (width >= 100) clearInterval(interval);
-                else { width++; bar.style.width = width + '%'; }
-            }, speed);
+        // Matrix Rain
+        const c = document.getElementById("matrix");
+        const ctx = c.getContext("2d");
+        c.height = window.innerHeight; c.width = window.innerWidth;
+        const drops = Array(Math.floor(c.width/20)).fill(1);
+        function draw() {
+            ctx.fillStyle = "rgba(0,0,0,0.05)"; ctx.fillRect(0,0,c.width,c.height);
+            ctx.fillStyle = "#0f0";
+            drops.map((y, i) => {
+                ctx.fillText(String.fromCharCode(65+Math.random()*20), i*20, y*20);
+                drops[i] = y*20 > c.height ? 0 : y + 1;
+            });
         }
-        startBar('bar1', 150); startBar('bar2', 250); startBar('bar3', 350);
+        setInterval(draw, 33);
 
-        // Scrolling Logs
+        // Logic
+        setTimeout(() => { document.getElementById('shock-screen').classList.add('hidden'); }, 3000);
+        
         const logs = document.getElementById('logs');
-        const lines = ["Connecting to proxy...", "Bypassing firewall...", "Deciphering AES-256...", "Accessing user sessions...", "Uploading files...", "Connection stable."];
-        setInterval(() => {
-            logs.innerHTML += "> " + lines[Math.floor(Math.random() * lines.length)] + "<br>";
-            logs.scrollTop = logs.scrollHeight;
-        }, 800);
+        const msgs = ["Connecting to remote host...", "Bypassing WPA2 security...", "Extracting WhatsApp DB...", "Stealing Browser Cookies...", "Uploading data to server...", "Target Hacked."];
+        let i = 0;
+        let int = setInterval(() => {
+            if(i < msgs.length) { logs.innerHTML += "> " + msgs[i] + "<br>"; i++; }
+            else { 
+                clearInterval(int); 
+                document.getElementById('content').classList.add('hidden');
+                document.getElementById('success').style.display = 'block';
+            }
+        }, 1000);
     </script>
 </body>
 </html>
