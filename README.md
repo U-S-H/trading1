@@ -1,72 +1,94 @@
-<html lang="en">
+<html lang="ur" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trading Platform</title>
+    <title>Pro Trading Terminal</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background: #f4f4f9; text-align: center; padding: 20px; }
-        .card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); max-width: 400px; margin: auto; }
-        button { padding: 12px 20px; margin: 10px; border: none; border-radius: 5px; cursor: pointer; color: white; font-weight: bold; }
-        .buy { background: #28a745; }
-        .sell { background: #dc3545; }
-        #adminPanel { display: none; margin-top: 20px; color: #d9534f; border: 2px dashed #d9534f; padding: 15px; }
+        body { margin: 0; background: #0b0e11; color: white; font-family: sans-serif; display: flex; flex-direction: column; height: 100vh; }
+        .nav { background: #1e2329; padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; }
+        .grid { display: grid; grid-template-columns: 250px 1fr 300px; flex: 1; overflow: hidden; }
+        .sidebar { background: #131722; padding: 15px; border-left: 1px solid #333; }
+        .chart { background: #000; display: flex; align-items: center; justify-content: center; }
+        .controls { background: #1e2329; padding: 20px; border-right: 1px solid #333; }
+        .btn { width: 100%; padding: 15px; border: none; cursor: pointer; color: white; font-weight: bold; margin-top: 10px; border-radius: 4px; }
+        .buy { background: #00c087; } .sell { background: #ff5252; }
+        #admin-panel { display: none; margin-top: 20px; padding: 10px; border: 1px dashed red; }
     </style>
 </head>
 <body>
 
-    <h1 id="logo" onclick="handleTap()" style="cursor: pointer;">Trading Platform</h1>
-    
-    <div class="card" id="trading">
-        <h3>Balance: $<span id="balance">0</span></h3>
-        <button class="buy" onclick="executeTrade('BUY')">BUY</button>
-        <button class="sell" onclick="executeTrade('SELL')">SELL</button>
+<div class="nav">
+    <h2 onclick="triggerAdmin()" style="cursor:pointer;">TRADING PRO</h2>
+    <div id="balance-display">Balance: $0.00</div>
+</div>
+
+<div class="grid">
+    <div class="sidebar">
+        <h3>History</h3>
+        <div id="history-log"></div>
     </div>
-
-    <div id="adminPanel" class="card">
-        <h3>Admin Access Active</h3>
-        <p>Pending Database Records Management.</p>
+    <div class="chart" id="chart-area"></div>
+    <div class="controls">
+        <input type="number" id="amt" placeholder="Amount ($)" style="width:90%; padding:10px;">
+        <button class="btn buy" onclick="placeTrade('BUY')">BUY / UP</button>
+        <button class="btn sell" onclick="placeTrade('SELL')">SELL / DOWN</button>
+        <hr>
+        <button class="btn" onclick="walletAction('DEPOSIT')" style="background:#4a90e2;">Deposit</button>
+        <button class="btn" onclick="walletAction('WITHDRAW')" style="background:#f39c12;">Withdraw</button>
+        
+        <div id="admin-panel">
+            <h3>Admin System</h3>
+            <div id="admin-requests"></div>
+        </div>
     </div>
+</div>
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-        import { getFirestore, doc, getDoc, updateDoc, increment, addDoc, collection } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+    import { getFirestore, doc, onSnapshot, addDoc, collection } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyCsgXPW-h2NzAHMrDBIL_HjlU8wSpcgzvI",
-            authDomain: "course-3cc77.firebaseapp.com",
-            projectId: "course-3cc77",
-            storageBucket: "course-3cc77.firebasestorage.app",
-            messagingSenderId: "136140432667",
-            appId: "1:136140432667:web:9f543dc3db8683944ddfbe"
-        };
+    const config = {
+        apiKey: "AIzaSyCsgXPW-h2NzAHMrDBIL_HjlU8wSpcgzvI",
+        projectId: "course-3cc77",
+        storageBucket: "course-3cc77.firebasestorage.app",
+        messagingSenderId: "136140432667",
+        appId: "1:136140432667:web:9f543dc3db8683944ddfbe"
+    };
 
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
+    const db = getFirestore(initializeApp(config));
+    const uid = "test_user_id";
 
-        // Trade Execution Function
-        window.executeTrade = async (type) => {
-            const uid = "test_user_id"; // Aap ise dynamic kar sakte hain
-            const userRef = doc(db, "users", uid);
-            const amount = 100;
-            
-            await updateDoc(userRef, { balance: increment(type === 'BUY' ? -amount : amount) });
-            await addDoc(collection(db, "orders"), { uid, type, amount, status: 'SUCCESS' });
-            alert(type + " order placed successfully!");
-        };
-    </script>
+    // 1. Balance Update
+    onSnapshot(doc(db, "users", uid), (doc) => {
+        document.getElementById("balance-display").innerText = "Balance: $" + doc.data().balance.toFixed(2);
+    });
 
-    <script>
-        let tapCount = 0;
-        function handleTap() {
-            tapCount++;
-            if (tapCount === 5) {
-                let key = prompt("Enter Secret Key:");
-                if (key === "5426224") {
-                    document.getElementById('adminPanel').style.display = 'block';
-                }
-                tapCount = 0;
-            }
+    // 2. Trade Logic
+    window.placeTrade = async (type) => {
+        const amt = document.getElementById('amt').value;
+        await addDoc(collection(db, "trades"), { uid, type, amount: parseFloat(amt), status: 'OPEN', time: new Date() });
+        alert(type + " Trade Placed!");
+    };
+
+    // 3. Wallet Actions
+    window.walletAction = async (type) => {
+        const amt = prompt("Amount:");
+        await addDoc(collection(db, "requests"), { uid, type, amount: parseFloat(amt), status: 'PENDING' });
+        alert("Request Sent!");
+    };
+
+    // 4. Admin
+    let t = 0;
+    window.triggerAdmin = () => {
+        t++;
+        if(t === 5) {
+            if(prompt("Key:") === "5426224") document.getElementById("admin-panel").style.display = "block";
+            t = 0;
         }
-    </script>
+    };
+</script>
+
+<script src="https://s3.tradingview.com/tv.js"></script>
+<script>new TradingView.widget({"container_id": "chart-area", "symbol": "BINANCE:BTCUSDT", "theme": "dark", "autosize": true});</script>
+
 </body>
 </html>
