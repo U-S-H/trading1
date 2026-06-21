@@ -1,122 +1,98 @@
-<html lang="ur" dir="rtl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Pro Trade App Terminal</title>
+    <title>Trading Hub LLC - Official</title>
+    <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
     <style>
-        :root { --bg: #0b0e11; --card: #1e2329; --green: #00c087; --red: #ff5252; --text: #fff; --hover: #2b3139; }
-        body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; transition: 0.5s; overflow: hidden; }
-        .app-grid { display: grid; grid-template-rows: 60px 1fr; height: 100vh; }
-        .nav { background: var(--card); padding: 0 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; z-index: 10; }
-        .main-content { display: grid; grid-template-columns: 3fr 1.2fr; flex: 1; overflow: hidden; }
-        .chart-container { background: #000; position: relative; }
-        .trade-panel { background: var(--card); padding: 20px; display: flex; flex-direction: column; gap: 15px; border-right: 1px solid #333; }
-        .card { background: var(--hover); padding: 15px; border-radius: 12px; transition: transform 0.2s; }
-        .card:hover { transform: translateY(-3px); }
-        input, select { width: 90%; padding: 12px; background: var(--bg); border: 1px solid #444; color: var(--text); border-radius: 8px; font-size: 1rem; }
-        .btn { width: 100%; padding: 15px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 1.1rem; transition: 0.2s; color: white; }
-        .buy { background: var(--green); } .sell { background: var(--red); }
-        .btn:active { transform: scale(0.98); }
-        .hidden { display: none; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .animated { animation: fadeIn 0.5s ease-in; }
+        body { font-family: sans-serif; background: #121212; color: white; padding: 20px; text-align: center; }
+        .section { background: #1e1e1e; padding: 15px; border-radius: 10px; margin: 10px auto; max-width: 500px; }
+        input, select { display: block; width: 90%; margin: 10px auto; padding: 10px; border-radius: 5px; border: none; }
+        button { padding: 10px 20px; cursor: pointer; border-radius: 5px; border: none; background: #007bff; color: white; }
+        #admin-section { display: none; border: 2px solid #ffcc00; padding: 15px; }
     </style>
 </head>
 <body>
 
-<div class="app-grid animated">
-    <div class="nav">
-        <h2 onclick="handleAdminTap()" style="cursor: pointer; animation: pulse 2s infinite;">PRO TRADE</h2>
-        <div class="card" style="padding: 10px 20px;">Balance: $<span id="balance">0.00</span></div>
+    <h1 id="logo" style="cursor: pointer;">Trading Hub LLC</h1>
+
+    <div id="chart-container" style="height: 300px; width: 100%; max-width: 600px; margin: auto; background: #1e1e1e;"></div>
+
+    <div class="section">
+        <h3>Deposit Funds</h3>
+        <select id="method"><option>EasyPaisa: 03379827882</option><option>JazzCash/SadaPay: 03705519562</option></select>
+        <input type="number" id="amount" placeholder="Amount">
+        <input type="text" id="tid" placeholder="TID Number">
+        <input type="file" id="proof" accept="image/*">
+        <button onclick="submitDeposit()">Submit Deposit</button>
     </div>
 
-    <div class="main-content">
-        <div class="chart-container" id="tv_chart"></div>
-        <div class="trade-panel">
-            <div class="card">
-                <h3>Trade Actions</h3>
-                <div style="display:flex; gap:10px;">
-                    <button onclick="openTab('deposit')" style="background:#4a90e2; padding:10px 15px;">Deposit</button>
-                    <button onclick="openTab('withdraw')" style="background:#f39c12; padding:10px 15px;">Withdraw</button>
-                </div>
-            </div>
-
-            <div class="card">
-                <h3>Fixed-Time Trade</h3>
-                <label>Amount ($)</label>
-                <input type="number" id="tradeAmt" placeholder="100">
-                <label style="margin-top:10px;">Duration</label>
-                <select id="tradeDuration">
-                    <option value="60">1 Min</option>
-                    <option value="120">2 Mins</option>
-                    <option value="300">5 Mins</option>
-                    <option value="900">15 Mins</option>
-                </select>
-                <div style="display:flex; gap:10px; margin-top:15px;">
-                    <button class="btn buy" onclick="executeTrade('BUY')">UP / CALL</button>
-                    <button class="btn sell" onclick="executeTrade('SELL')">DOWN / PUT</button>
-                </div>
-            </div>
-
-            <div class="card">
-                <h3>Current Positions</h3>
-                <div id="activeTrades" style="font-size:0.9rem;">No active trades.</div>
-            </div>
-
-            <div id="admin-panel" class="card hidden" style="border: 1px solid red;">
-                <h3>Admin Panel</h3>
-                <p>Pending database requests log.</p>
-            </div>
-        </div>
+    <div id="admin-section" class="section">
+        <h3>Admin Panel</h3>
+        <div id="requests-list"></div>
     </div>
-</div>
 
-<script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-    import { getFirestore, doc, onSnapshot, updateDoc, increment, addDoc, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, onSnapshot, doc, updateDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
-    const config = { /* Apni Configuration Yahan Rakhein */ };
-    const db = getFirestore(initializeApp(config));
-    const uid = "test_user_id";
+        const firebaseConfig = {
+            apiKey: "AIzaSyCsgXPW-h2NzAHMrDBIL_HjlU8wSpcgzvI",
+            authDomain: "course-3cc77.firebaseapp.com",
+            projectId: "course-3cc77",
+            storageBucket: "course-3cc77.firebasestorage.app",
+            messagingSenderId: "136140432667",
+            appId: "1:136140432667:web:9f543dc3db8683944ddfbe"
+        };
 
-    // 1. Professional Trading Logic (Fixed-Time)
-    window.executeTrade = async (type) => {
-        const amt = parseFloat(document.getElementById('tradeAmt').value);
-        const duration = parseInt(document.getElementById('tradeDuration').value);
-        const startTime = new Date();
-        const endTime = new Date(startTime.getTime() + duration * 1000);
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore();
 
-        await addDoc(collection(db, "activeTrades"), { uid, type, amount: amt, startTime, endTime, status: 'OPEN' });
-        alert(type + " Trade initialized for " + duration/60 + " min!");
-        updateActiveTrades();
-    };
+        // Chart Init
+        const chart = LightweightCharts.createChart(document.getElementById('chart-container'), { width: 500, height: 300 });
+        const lineSeries = chart.addAreaSeries();
+        lineSeries.setData([{ time: '2026-06-21', value: 50000 }]);
 
-    // 2. Real-time Database for Trades and Balance
-    onSnapshot(doc(db, "users", uid), (snap) => {
-        document.getElementById("balance").innerText = snap.data().balance.toFixed(2);
-    });
+        // Deposit Logic
+        window.submitDeposit = async () => {
+            const file = document.getElementById('proof').files[0];
+            const reader = new FileReader();
+            reader.onload = async (e) => {
+                await addDoc(collection(db, "deposits"), {
+                    amount: document.getElementById('amount').value,
+                    tid: document.getElementById('tid').value,
+                    proof: e.target.result,
+                    status: "Pending"
+                });
+                alert("Deposit submitted!");
+            };
+            reader.readAsDataURL(file);
+        };
 
-    // 3. User Wallet Flow (Integrated)
-    window.openTab = async (type) => {
-        const amt = prompt(type.toUpperCase() + " Amount ($):");
-        await addDoc(collection(db, "walletRequests"), { uid, amount: parseFloat(amt), type, status: "PENDING", time: new Date() });
-        alert(type + " Request submitted!");
-    };
+        // Admin Secret Logic
+        document.getElementById("logo").addEventListener("click", () => {
+            if (prompt("Enter Secret Key:") === "5426224") {
+                document.getElementById("admin-section").style.display = "block";
+                loadAdminRequests();
+            }
+        });
 
-    // 4. Admin
-    let tCount = 0;
-    window.handleAdminTap = () => {
-        tCount++;
-        if(tCount === 5) {
-            if(prompt("Secret Key:") === "5426224") document.getElementById('admin-panel').classList.remove('hidden');
-            tCount = 0;
+        function loadAdminRequests() {
+            onSnapshot(collection(db, "deposits"), (snapshot) => {
+                let html = "";
+                snapshot.forEach((d) => {
+                    if(d.data().status === "Pending") {
+                        html += `<div><p>TID: ${d.data().tid} | $${d.data().amount}</p>
+                        <button onclick="approve('${d.id}')">Approve</button></div>`;
+                    }
+                });
+                document.getElementById('requests-list').innerHTML = html;
+            });
         }
-    };
-</script>
 
-<script src="https://s3.tradingview.com/tv.js"></script>
-<script>
-    new TradingView.widget({"container_id": "tv_chart", "symbol": "BINANCE:BTCUSDT", "theme": "dark", "autosize": true});
-</script>
-
+        window.approve = async (id) => {
+            await updateDoc(doc(db, "deposits", id), { status: "Approved" });
+            alert("Approved!");
+        };
+    </script>
 </body>
 </html>
