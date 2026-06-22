@@ -16,7 +16,7 @@
 </head>
 <body class="bg-darkBg text-gray-100 font-sans antialiased">
 
-    <!-- Auth Screen (Login / Register) -->
+    <!-- Auth Screen -->
     <div id="authScreen" class="fixed inset-0 bg-darkBg z-50 flex items-center justify-center p-4">
         <div class="bg-cardBg border border-gray-800 p-8 rounded-2xl shadow-2xl w-full max-w-md">
             <div class="flex items-center space-x-2 justify-center mb-6">
@@ -26,7 +26,6 @@
 
             <h2 id="authTitle" class="text-xl font-semibold text-center text-white mb-6">Login to your account</h2>
 
-            <!-- Form -->
             <div class="space-y-4">
                 <div>
                     <label class="block text-xs font-medium text-gray-400 uppercase mb-1">Email Address</label>
@@ -41,14 +40,12 @@
                     Login
                 </button>
 
-                <!-- Divider -->
                 <div class="relative flex py-2 items-center">
                     <div class="flex-grow border-t border-gray-800"></div>
                     <span class="flex-shrink mx-4 text-gray-500 text-xs uppercase">Or continue with</span>
                     <div class="flex-grow border-t border-gray-800"></div>
                 </div>
 
-                <!-- Google Login Button -->
                 <button id="googleAuthBtn" class="w-full bg-gray-800 hover:bg-gray-700 text-white font-medium py-2.5 rounded-lg transition text-sm flex items-center justify-center space-x-2 border border-gray-700">
                     <svg class="w-4 h-4" viewBox="0 0 24 24">
                         <path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -69,7 +66,6 @@
 
     <!-- Main Platform App Dashboard -->
     <div id="dashboardScreen" class="hidden">
-        <!-- Navbar -->
         <nav class="border-b border-gray-800 bg-darkBg/50 backdrop-blur-md sticky top-0 z-50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
                 <div class="flex items-center space-x-2">
@@ -85,7 +81,6 @@
             </div>
         </nav>
 
-        <!-- Main Content -->
         <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <!-- Live Prices Ticker -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
@@ -107,7 +102,6 @@
 
             <!-- Terminal Row -->
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <!-- Order form -->
                 <div class="bg-cardBg border border-gray-800 p-6 rounded-2xl shadow-xl">
                     <h2 class="text-lg font-semibold text-white mb-4">Place Trade</h2>
                     <div class="space-y-4">
@@ -164,10 +158,9 @@
         </main>
     </div>
 
-    <!-- FIREBASE AND CORE SIMULATOR LOGIC -->
+    <!-- FIREBASE MODULE SDK SETUP -->
     <script type="module">
-        // Import Firebase Core and Auth modules via Unpkg
-        import { initializeApp } from "https://unpkg.com/firebase@10.7.1/firebase-app.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { 
             getAuth, 
             createUserWithEmailAndPassword, 
@@ -176,9 +169,8 @@
             GoogleAuthProvider, 
             onAuthStateChanged, 
             signOut 
-        } from "https://unpkg.com/firebase@10.7.1/firebase-auth.js";
+        } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-        // Firebase Setup Config using shared keys
         const firebaseConfig = {
             apiKey: "AIzaSyCsgXPW-h2NzAHMrDBIL_HjlU8wSpcgzvI",
             authDomain: "course-3cc77.firebaseapp.com",
@@ -193,7 +185,6 @@
         const auth = getAuth(app);
         const googleProvider = new GoogleAuthProvider();
 
-        // Screen States & Navigation Toggles
         let isSignUpMode = false;
         const authScreen = document.getElementById('authScreen');
         const dashboardScreen = document.getElementById('dashboardScreen');
@@ -203,11 +194,11 @@
         const authToggleText = document.getElementById('authToggleText');
         const userEmailDisplay = document.getElementById('userEmailDisplay');
 
-        // Toggle Login vs Sign Up State UI
+        // Toggle Auth View UI State
         authToggleBtn.addEventListener('click', () => {
             isSignUpMode = !isSignUpMode;
             if (isSignUpMode) {
-                authTitle.innerText = "Create dynamic account";
+                authTitle.innerText = "Create Your Account";
                 mainAuthBtn.innerText = "Register Account";
                 authToggleText.innerText = "Already have an account?";
                 authToggleBtn.innerText = "Login";
@@ -219,26 +210,29 @@
             }
         });
 
-        // Email / Password Form Submit Event
+        // Email and Password Login/Register Execution Fix
         mainAuthBtn.addEventListener('click', async () => {
-            const email = document.getElementById('authEmail').value;
+            const email = document.getElementById('authEmail').value.trim();
             const password = document.getElementById('authPassword').value;
 
-            if(!email || !password) return alert("Fields cannot be empty!");
+            if(!email || !password) {
+                alert("Please enter both email and password.");
+                return;
+            }
 
             try {
                 if (isSignUpMode) {
                     await createUserWithEmailAndPassword(auth, email, password);
-                    alert("Account setup successfully!");
+                    alert("Account registered successfully!");
                 } else {
                     await signInWithEmailAndPassword(auth, email, password);
                 }
             } catch (error) {
-                alert("Auth Error: " + error.message);
+                alert("Authentication Failed: " + error.message);
             }
         });
 
-        // Google Sign In Popup Trigger
+        // Google Auth Trigger Event Action
         document.getElementById('googleAuthBtn').addEventListener('click', async () => {
             try {
                 await signInWithPopup(auth, googleProvider);
@@ -248,25 +242,27 @@
         });
 
         // Logout Event Trigger
-        document.getElementById('logoutBtn').addEventListener('click', () => {
-            signOut(auth);
+        document.getElementById('logoutBtn').addEventListener('click', async () => {
+            try {
+                await signOut(auth);
+            } catch (error) {
+                console.error("Logout Error", error);
+            }
         });
 
-        // Monitor Realtime Firebase Authentication Changes
+        // Watch Auth State Change globally
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 authScreen.classList.add('hidden');
                 dashboardScreen.classList.remove('hidden');
-                userEmailDisplay.innerText = user.email || user.displayName || "Active User";
+                userEmailDisplay.innerText = user.email || user.displayName || "Investor";
             } else {
                 authScreen.classList.remove('hidden');
                 dashboardScreen.classList.add('hidden');
-                document.getElementById('authEmail').value = '';
-                document.getElementById('authPassword').value = '';
             }
         });
 
-        // --- TRADING ENGINE CORE SIMULATOR ---
+        // --- CORE SIMULATOR MECHANICS ENGINE ---
         let prices = { BTC: 65000.00, ETH: 3400.00 };
         let positions = [];
 
@@ -297,7 +293,7 @@
             renderPositions();
         }, 2000);
 
-        window.executeTrade = function(type) {
+        function executeTrade(type) {
             const asset = document.getElementById('tradeAsset').value;
             const amount = parseFloat(document.getElementById('tradeAmount').value) || 0;
             const tp = parseFloat(document.getElementById('tradeTP').value) || null;
@@ -320,11 +316,6 @@
             renderPositions();
         }
 
-        window.closePosition = function(id) {
-            positions = positions.filter(pos => pos.id !== id);
-            renderPositions();
-        }
-
         function checkOrderTriggers() {
             positions.forEach((pos, index) => {
                 const currentPrice = prices[pos.asset];
@@ -340,7 +331,7 @@
 
                 if (shouldClose) {
                     positions.splice(index, 1);
-                    alert(`Engine Trigger: Open positions updated for ${pos.asset}.`);
+                    alert(`Engine Trigger: Position closed for ${pos.asset}.`);
                 }
             });
         }
@@ -367,15 +358,24 @@
                     <td class="py-3 font-mono text-white">$${currentPrice.toFixed(2)}</td>
                     <td class="py-3 font-mono text-xs text-gray-400">TP: ${pos.tp ? '$' + pos.tp : 'None'}<br>SL: ${pos.sl ? '$' + pos.sl : 'None'}</td>
                     <td class="py-3 text-right">
-                        <button onclick="closePosition(${pos.id})" class="bg-gray-800 hover:bg-accentRed text-gray-300 hover:text-white px-3 py-1 rounded text-xs font-medium transition">Close</button>
+                        <button data-id="${pos.id}" class="close-btn bg-gray-800 hover:bg-accentRed text-gray-300 hover:text-white px-3 py-1 rounded text-xs font-medium transition">Close</button>
                     </td>
                 `;
                 tbody.appendChild(row);
             });
+
+            // Re-bind click event handlers for close buttons dynamically safely inside module scope
+            document.querySelectorAll('.close-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const id = parseInt(e.target.getAttribute('data-id'));
+                    positions = positions.filter(pos => pos.id !== id);
+                    renderPositions();
+                });
+            });
         }
 
-        document.getElementById('buyBtn').addEventListener('click', () => window.executeTrade('BUY'));
-        document.getElementById('sellBtn').addEventListener('click', () => window.executeTrade('SELL'));
+        document.getElementById('buyBtn').addEventListener('click', () => executeTrade('BUY'));
+        document.getElementById('sellBtn').addEventListener('click', () => executeTrade('SELL'));
     </script>
 </body>
 </html>
