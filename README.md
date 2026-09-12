@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>micro1 AI Interview Pro Simulator</title>
+    <title>micro1 AI Interview Master Sheet & Simulator</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @keyframes float {
@@ -16,14 +16,14 @@
 <body class="bg-slate-950 text-slate-100 min-h-screen font-sans selection:bg-emerald-500 selection:text-slate-950">
 
     <!-- Top Navigation / Status Bar -->
-    <header class="sticky top-0 z-50 bg-slate-900/80 backdrop-blur-md border-b border-slate-800 px-4 py-3 flex items-center justify-between">
+    <header class="sticky top-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 px-4 py-3 flex items-center justify-between">
         <div class="flex items-center gap-3">
             <div class="w-3 h-3 rounded-full bg-emerald-500 animate-ping"></div>
-            <span class="font-bold tracking-wider text-emerald-400 text-sm md:text-base">micro1 AI Simulator v2.0</span>
+            <span class="font-bold tracking-wider text-emerald-400 text-sm md:text-base">micro1 AI Interview Hub</span>
         </div>
-        <div class="flex items-center gap-4 text-xs md:text-sm">
+        <div class="flex items-center gap-3 text-xs md:text-sm">
             <div class="bg-slate-800 border border-slate-700 px-3 py-1 rounded-full flex items-center gap-2">
-                <span class="text-slate-400">Timer:</span>
+                <span class="text-slate-400">Interview Timer:</span>
                 <span id="masterTimer" class="font-mono text-amber-400 font-bold">55:00</span>
             </div>
             <button onclick="switchTab('dashboard')" class="bg-slate-800 hover:bg-slate-700 px-3 py-1.5 rounded-lg transition text-slate-200">Dashboard</button>
@@ -33,77 +33,151 @@
     <main class="max-w-5xl mx-auto p-4 md:p-8 space-y-8">
 
         <!-- DASHBOARD TAB -->
-        <div id="tab-dashboard" class="space-y-8 animate-fadeIn">
-            <!-- Hero Banner with AI Avatar Feel -->
+        <div id="tab-dashboard" class="space-y-8">
+            <!-- Hero Banner based on micro1 exact instructions -->
             <div class="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 border border-slate-700/60 p-6 md:p-8 rounded-2xl relative overflow-hidden glow-effect space-y-6">
                 <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
                 
                 <div class="flex flex-col md:flex-row items-center justify-between gap-6">
                     <div class="space-y-3 text-center md:text-left">
-                        <span class="bg-emerald-500/10 text-emerald-400 text-xs px-3 py-1 rounded-full border border-emerald-500/20 font-medium">Ready for Interview</span>
-                        <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white">Ace Your <span class="text-emerald-400">micro1</span> Assessment</h1>
-                        <p class="text-slate-400 max-w-xl text-sm md:text-base">~55 Minutes Q&A + 25 Minutes Live Coding Exercise. Practice interactively with real-time feedback simulator!</p>
+                        <span class="bg-emerald-500/10 text-emerald-400 text-xs px-3 py-1 rounded-full border border-emerald-500/20 font-medium">micro1 Assessment Guidelines</span>
+                        <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight text-white">~55 Minutes Q&A + <span class="text-emerald-400">25-Min Coding</span></h1>
+                        <p class="text-slate-400 max-w-xl text-sm md:text-base">This interview takes ~55 minutes with limited time per question. Answer by speaking or typing. Ensure a quiet spot and stable internet[span_2](start_span)[span_2](end_span). Recorded and available in your profile link[span_3](start_span)[span_3](end_span). Followed by a 25-minute coding exercise[span_4](start_span)[span_4](end_span).</p>
                     </div>
-                    <!-- AI Hologram Circle -->
                     <div class="relative w-28 h-28 flex items-center justify-center bg-slate-950 rounded-full border-2 border-emerald-500/40 animate-float shadow-lg shadow-emerald-950">
                         <div class="absolute inset-0 rounded-full bg-emerald-500/5 animate-pulse"></div>
-                        <span class="text-3xl">🤖</span>
+                        <span class="text-3xl">🎙️</span>
                     </div>
                 </div>
 
-                <!-- Quick Action Launch Cards -->
+                <!-- Action Launch Cards -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t border-slate-700/50">
-                    <button onclick="switchTab('mock')" class="bg-slate-800/80 hover:bg-slate-800 border border-slate-700 p-4 rounded-xl text-left transition hover:border-emerald-500/50 group">
-                        <div class="text-2xl mb-2 group-hover:scale-110 transition-transform">🎯</div>
-                        <h3 class="font-bold text-emerald-300">Mock Interview Q&A</h3>
-                        <p class="text-xs text-slate-400 mt-1">Simulate AI interviewer questions with voice/text prompts.</p>
+                    <button onclick="switchTab('qa')" class="bg-slate-800/80 hover:bg-slate-800 border border-slate-700 p-4 rounded-xl text-left transition hover:border-emerald-500/50 group">
+                        <div class="text-2xl mb-2 group-hover:scale-110 transition-transform">📋</div>
+                        <h3 class="font-bold text-emerald-300">All Topics Q&A Prep</h3>
+                        <p class="text-xs text-slate-400 mt-1">Review exact questions and structured answers for all 6 topics.</p>
                     </button>
-                    <button onclick="switchTab('quiz')" class="bg-slate-800/80 hover:bg-slate-800 border border-slate-700 p-4 rounded-xl text-left transition hover:border-emerald-500/50 group">
-                        <div class="text-2xl mb-2 group-hover:scale-110 transition-transform">⚡</div>
-                        <h3 class="font-bold text-emerald-300">Interactive Quiz Test</h3>
-                        <p class="text-xs text-slate-400 mt-1">Test your React, Tailwind & JS core knowledge instantly.</p>
+                    <button onclick="switchTab('mock')" class="bg-slate-800/80 hover:bg-slate-800 border border-slate-700 p-4 rounded-xl text-left transition hover:border-emerald-500/50 group">
+                        <div class="text-2xl mb-2 group-hover:scale-110 transition-transform">🤖</div>
+                        <h3 class="font-bold text-emerald-300">Interactive Mock Simulator</h3>
+                        <p class="text-xs text-slate-400 mt-1">Practice with speech/text simulator and custom interview timer.</p>
                     </button>
                     <button onclick="switchTab('coding')" class="bg-slate-800/80 hover:bg-slate-800 border border-slate-700 p-4 rounded-xl text-left transition hover:border-emerald-500/50 group">
                         <div class="text-2xl mb-2 group-hover:scale-110 transition-transform">💻</div>
-                        <h3 class="font-bold text-emerald-300">Live Coding Arena</h3>
-                        <p class="text-xs text-slate-400 mt-1">Practice 25-minute data-fetching & form patterns.</p>
+                        <h3 class="font-bold text-emerald-300">25-Min Coding Arena</h3>
+                        <p class="text-xs text-slate-400 mt-1">Data-fetching patterns and dynamic form state handling code templates.</p>
                     </button>
                 </div>
             </div>
 
-            <!-- Syllabus Overview Grid -->
+            <!-- Topics List from Screenshot -->
             <div class="space-y-4">
-                <h2 class="text-xl font-bold text-slate-200 border-l-4 border-emerald-400 pl-3">Interview Focus Topics</h2>
+                <h2 class="text-xl font-bold text-slate-200 border-l-4 border-emerald-400 pl-3">You will be interviewed on these topics[span_5](start_span)[span_5](end_span):</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-2 hover:border-slate-700 transition">
-                        <h3 class="font-semibold text-amber-300 flex items-center gap-2"><span>⚛️</span> React + JavaScript Frontend Engineering</h3>
-                        <p class="text-xs text-slate-400">Hooks lifecycle, state management, closures, and ES6+ features.</p>
+                    <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-1">
+                        <span class="text-xs text-emerald-400 font-mono">Topic 1</span>
+                        <h3 class="font-semibold text-amber-300">React + JavaScript Frontend Engineering[span_6](start_span)[span_6](end_span)</h3>
                     </div>
-                    <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-2 hover:border-slate-700 transition">
-                        <h3 class="font-semibold text-amber-300 flex items-center gap-2"><span>🎨</span> Tailwind CSS & Responsive Design</h3>
-                        <p class="text-xs text-slate-400">Mobile-first styling, design systems tokens, and reusable components.</p>
+                    <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-1">
+                        <span class="text-xs text-emerald-400 font-mono">Topic 2</span>
+                        <h3 class="font-semibold text-amber-300">Tailwind CSS + Responsive UI / Design Systems[span_7](start_span)[span_7](end_span)</h3>
                     </div>
-                    <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-2 hover:border-slate-700 transition">
-                        <h3 class="font-semibold text-amber-300 flex items-center gap-2"><span>🚀</span> Performance & Optimization</h3>
-                        <p class="text-xs text-slate-400">React DevTools profiling, code splitting, memoization, and bundle reduction.</p>
+                    <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-1">
+                        <span class="text-xs text-emerald-400 font-mono">Topic 3</span>
+                        <h3 class="font-semibold text-amber-300">Pixel-perfect UI Implementation & Designer Collaboration[span_8](start_span)[span_8](end_span)</h3>
                     </div>
-                    <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-2 hover:border-slate-700 transition">
-                        <h3 class="font-semibold text-amber-300 flex items-center gap-2"><span>♿</span> Accessibility (a11y) & Standards</h3>
-                        <p class="text-xs text-slate-400">Semantic HTML, ARIA attributes, keyboard navigation, and Lighthouse audits.</p>
+                    <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-1">
+                        <span class="text-xs text-emerald-400 font-mono">Topic 4</span>
+                        <h3 class="font-semibold text-amber-300">Frontend Performance Optimization[span_9](start_span)[span_9](end_span)</h3>
+                    </div>
+                    <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-1">
+                        <span class="text-xs text-emerald-400 font-mono">Topic 5</span>
+                        <h3 class="font-semibold text-amber-300">Accessibility (a11y) & Usability Standards[span_10](start_span)[span_10](end_span)</h3>
+                    </div>
+                    <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-1">
+                        <span class="text-xs text-emerald-400 font-mono">Topic 6</span>
+                        <h3 class="font-semibold text-amber-300">Custom questions defined for the job[span_11](start_span)[span_11](end_span)</h3>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- MOCK INTERVIEW TAB -->
-        <div id="tab-mock" class="hidden space-y-6 animate-fadeIn">
+        <!-- Q&A PREP TAB -->
+        <div id="tab-qa" class="hidden space-y-6">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+                <h2 class="text-2xl font-bold text-emerald-400">Comprehensive Interview Q&A Bank</h2>
+                <button onclick="switchTab('dashboard')" class="text-xs bg-slate-800 hover:bg-slate-700 px-3 py-1.5 rounded-lg transition">Back</button>
+            </div>
+
+            <div class="space-y-6">
+                <!-- Topic 1 -->
+                <div class="bg-slate-900 p-5 rounded-xl border border-slate-800 space-y-3">
+                    <h3 class="text-lg font-bold text-amber-300">1. React + JavaScript Frontend Engineering</h3>
+                    <div class="border-t border-slate-800 pt-3 space-y-2">
+                        <p class="font-medium text-slate-200 text-sm">Q: Difference between let, const, and var?</p>
+                        <p class="text-slate-400 text-xs"><span class="text-emerald-400 font-semibold">Answer:</span> <code class="bg-slate-950 px-1 rounded text-amber-200">var</code> is function-scoped and hoisted with undefined. <code class="bg-slate-950 px-1 rounded text-amber-200">let</code> and <code class="bg-slate-950 px-1 rounded text-amber-200">const</code> are block-scoped. <code class="bg-slate-950 px-1 rounded text-amber-200">let</code> allows reassignment, whereas <code class="bg-slate-950 px-1 rounded text-amber-200">const</code> does not.</p>
+                    </div>
+                    <div class="border-t border-slate-800 pt-3 space-y-2">
+                        <p class="font-medium text-slate-200 text-sm">Q: How does useEffect handle component lifecycles?</p>
+                        <p class="text-slate-400 text-xs"><span class="text-emerald-400 font-semibold">Answer:</span> Combines componentDidMount, componentDidUpdate, and componentWillUnmount based on the dependency array.</p>
+                    </div>
+                </div>
+
+                <!-- Topic 2 -->
+                <div class="bg-slate-900 p-5 rounded-xl border border-slate-800 space-y-3">
+                    <h3 class="text-lg font-bold text-amber-300">2. Tailwind CSS + Responsive UI / Design Systems</h3>
+                    <div class="border-t border-slate-800 pt-3 space-y-2">
+                        <p class="font-medium text-slate-200 text-sm">Q: How does Tailwind handle responsive design?</p>
+                        <p class="text-slate-400 text-xs"><span class="text-emerald-400 font-semibold">Answer:</span> Uses a mobile-first philosophy with breakpoint prefixes like <code class="bg-slate-950 px-1 rounded text-amber-200">sm:</code>, <code class="bg-slate-950 px-1 rounded text-amber-200">md:</code>, and <code class="bg-slate-950 px-1 rounded text-amber-200">lg:</code>.</p>
+                    </div>
+                </div>
+
+                <!-- Topic 3 -->
+                <div class="bg-slate-900 p-5 rounded-xl border border-slate-800 space-y-3">
+                    <h3 class="text-lg font-bold text-amber-300">3. Pixel-perfect UI Implementation & Designer Collaboration</h3>
+                    <div class="border-t border-slate-800 pt-3 space-y-2">
+                        <p class="font-medium text-slate-200 text-sm">Q: How do you translate a Figma design into Tailwind components?</p>
+                        <p class="text-slate-400 text-xs"><span class="text-emerald-400 font-semibold">Answer:</span> Extract exact tokens (colors, typography, spacing) and configure theme extensions in <code class="bg-slate-950 px-1 rounded text-amber-200">tailwind.config.js</code>.</p>
+                    </div>
+                </div>
+
+                <!-- Topic 4 -->
+                <div class="bg-slate-900 p-5 rounded-xl border border-slate-800 space-y-3">
+                    <h3 class="text-lg font-bold text-amber-300">4. Frontend Performance Optimization</h3>
+                    <div class="border-t border-slate-800 pt-3 space-y-2">
+                        <p class="font-medium text-slate-200 text-sm">Q: How do you resolve performance bottlenecks in React?</p>
+                        <p class="text-slate-400 text-xs"><span class="text-emerald-400 font-semibold">Answer:</span> Profile using React DevTools, eliminate unnecessary re-renders with <code class="bg-slate-950 px-1 rounded text-amber-200">React.memo</code>, <code class="bg-slate-950 px-1 rounded text-amber-200">useMemo</code>, and code-split with <code class="bg-slate-950 px-1 rounded text-amber-200">React.lazy</code>.</p>
+                    </div>
+                </div>
+
+                <!-- Topic 5 -->
+                <div class="bg-slate-900 p-5 rounded-xl border border-slate-800 space-y-3">
+                    <h3 class="text-lg font-bold text-amber-300">5. Accessibility (a11y) & Usability Standards</h3>
+                    <div class="border-t border-slate-800 pt-3 space-y-2">
+                        <p class="font-medium text-slate-200 text-sm">Q: Why is semantic HTML critical for accessibility?</p>
+                        <p class="text-slate-400 text-xs"><span class="text-emerald-400 font-semibold">Answer:</span> Screen readers rely on tags like <code class="bg-slate-950 px-1 rounded text-amber-200">&lt;button&gt;</code> and <code class="bg-slate-950 px-1 rounded text-amber-200">&lt;nav&gt;</code> to interpret structural hierarchy properly.</p>
+                    </div>
+                </div>
+
+                <!-- Topic 6 -->
+                <div class="bg-slate-900 p-5 rounded-xl border border-slate-800 space-y-3">
+                    <h3 class="text-lg font-bold text-amber-300">6. Custom Questions Defined for the Job</h3>
+                    <div class="border-t border-slate-800 pt-3 space-y-2">
+                        <p class="font-medium text-slate-200 text-sm">Q: Tell me about a custom web app built from scratch.</p>
+                        <p class="text-slate-400 text-xs"><span class="text-emerald-400 font-semibold">Answer Strategy:</span> Detail architectural choices, custom component layouts, clean state management, and deployment pipelines.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- INTERACTIVE MOCK SIMULATOR TAB -->
+        <div id="tab-mock" class="hidden space-y-6">
             <div class="flex items-center justify-between border-b border-slate-800 pb-4">
                 <h2 class="text-2xl font-bold text-emerald-400">AI Mock Interview Simulator</h2>
                 <button onclick="switchTab('dashboard')" class="text-xs bg-slate-800 hover:bg-slate-700 px-3 py-1.5 rounded-lg transition">Back</button>
             </div>
 
             <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl space-y-6 shadow-xl">
-                <!-- AI Question Display Box -->
                 <div class="flex items-start gap-4 bg-slate-950 p-5 rounded-xl border border-slate-800">
                     <div class="w-10 h-10 rounded-full bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center shrink-0 text-lg">🤖</div>
                     <div class="space-y-2">
@@ -112,70 +186,39 @@
                     </div>
                 </div>
 
-                <!-- Answer Input Area -->
                 <div class="space-y-3">
-                    <label class="text-xs font-medium text-slate-400">Your Answer (Type or speak practice):</label>
-                    <textarea id="userAnswerInput" rows="4" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-4 text-slate-100 focus:outline-none focus:border-emerald-500 transition text-sm" placeholder="Type your structured answer here..."></textarea>
+                    <label class="text-xs font-medium text-slate-400">Your Practice Answer (Type or speak):</label>
+                    <textarea id="userAnswerInput" rows="4" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-4 text-slate-100 focus:outline-none focus:border-emerald-500 transition text-sm" placeholder="Type your response here..."></textarea>
                 </div>
 
-                <!-- Action Controls -->
                 <div class="flex flex-wrap items-center justify-between gap-4">
                     <div class="flex items-center gap-2">
-                        <button onclick="playAISpeech()" class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2 rounded-xl text-xs font-semibold transition flex items-center gap-2 border border-slate-700">
-                            🔊 Listen to Question
-                        </button>
-                        <button onclick="showAIHint()" class="bg-slate-800 hover:bg-slate-700 text-amber-300 px-4 py-2 rounded-xl text-xs font-semibold transition flex items-center gap-2 border border-slate-700">
-                            💡 Show Pro Hint
-                        </button>
+                        <button onclick="playAISpeech()" class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2 rounded-xl text-xs font-semibold transition border border-slate-700">🔊 Listen</button>
+                        <button onclick="showAIHint()" class="bg-slate-800 hover:bg-slate-700 text-amber-300 px-4 py-2 rounded-xl text-xs font-semibold transition border border-slate-700">💡 Pro Hint</button>
                     </div>
-                    <button onclick="nextMockQuestion()" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold px-6 py-2.5 rounded-xl text-sm transition shadow-lg shadow-emerald-500/20">
-                        Next Question ➔
-                    </button>
+                    <button onclick="nextMockQuestion()" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold px-6 py-2.5 rounded-xl text-sm transition">Next Question ➔</button>
                 </div>
 
-                <!-- Hint Box (Hidden by default) -->
                 <div id="hintBox" class="hidden bg-amber-500/10 border border-amber-500/30 p-4 rounded-xl text-amber-200 text-xs space-y-1">
-                    <span class="font-bold">Pro Tip:</span> Mention function scope vs block scope, hoisting behavior, and reassignment rules clearly.
+                    <span class="font-bold">Pro Tip:</span> Talk about block scope and hoisting clearly.
                 </div>
             </div>
         </div>
 
-        <!-- INTERACTIVE QUIZ TEST TAB -->
-        <div id="tab-quiz" class="hidden space-y-6 animate-fadeIn">
+        <!-- 25-MIN CODING EXERCISE ARENA TAB -->
+        <div id="tab-coding" class="hidden space-y-6">
             <div class="flex items-center justify-between border-b border-slate-800 pb-4">
-                <h2 class="text-2xl font-bold text-emerald-400">Interactive Knowledge Test</h2>
+                <h2 class="text-2xl font-bold text-emerald-400">25-Minute Coding Exercise Arena</h2>
                 <button onclick="switchTab('dashboard')" class="text-xs bg-slate-800 hover:bg-slate-700 px-3 py-1.5 rounded-lg transition">Back</button>
             </div>
 
-            <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl space-y-6 shadow-xl">
-                <div class="flex justify-between items-center text-xs text-slate-400">
-                    <span>Quiz Progress: <span id="quizProg">1 / 4</span></span>
-                    <span>Score: <span id="quizScore" class="text-emerald-400 font-bold">0</span></span>
-                </div>
-
-                <div class="space-y-4">
-                    <h3 id="quizQuestion" class="text-lg font-semibold text-slate-200">What does the dependency array in useEffect control?</h3>
-                    <div id="quizOptions" class="grid grid-cols-1 gap-3">
-                        <!-- Options generated dynamically -->
-                    </div>
-                </div>
-
-                <div id="quizFeedback" class="hidden p-4 rounded-xl text-sm font-medium"></div>
-            </div>
-        </div>
-
-        <!-- LIVE CODING ARENA TAB -->
-        <div id="tab-coding" class="hidden space-y-6 animate-fadeIn">
-            <div class="flex items-center justify-between border-b border-slate-800 pb-4">
-                <h2 class="text-2xl font-bold text-emerald-400">Live Coding Exercise Arena</h2>
-                <button onclick="switchTab('dashboard')" class="text-xs bg-slate-800 hover:bg-slate-700 px-3 py-1.5 rounded-lg transition">Back</button>
-            </div>
+            <p class="text-xs text-slate-400">Right after the ~55 min Q&A portion, there is a 25-minute coding exercise[span_12](start_span)[span_12](end_span). Memorize and practice these core patterns:</p>
 
             <div class="space-y-6">
-                <!-- Snippet 1 -->
-                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl space-y-4 shadow-xl">
+                <!-- Code Snippet 1 -->
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl space-y-4">
                     <div class="flex items-center justify-between">
-                        <h3 class="font-semibold text-emerald-300">Pattern 1: Data Fetching & State Handling</h3>
+                        <h3 class="font-semibold text-emerald-300">Pattern 1: Data Fetching Table/List (Crucial)</h3>
                         <button onclick="copySnippet('code1', this)" class="text-xs bg-slate-800 hover:bg-slate-700 border border-slate-700 px-3 py-1.5 rounded-lg transition text-slate-200">📋 Copy Code</button>
                     </div>
                     <pre class="bg-slate-950 p-4 rounded-xl overflow-x-auto text-xs text-emerald-400 font-mono border border-slate-800"><code id="code1">import { useState, useEffect } from 'react';
@@ -204,10 +247,10 @@ export default function DataFetcher() {
 }</code></pre>
                 </div>
 
-                <!-- Snippet 2 -->
-                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl space-y-4 shadow-xl">
+                <!-- Code Snippet 2 -->
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl space-y-4">
                     <div class="flex items-center justify-between">
-                        <h3 class="font-semibold text-emerald-300">Pattern 2: Dynamic Form Control</h3>
+                        <h3 class="font-semibold text-emerald-300">Pattern 2: Dynamic Form & State Handling</h3>
                         <button onclick="copySnippet('code2', this)" class="text-xs bg-slate-800 hover:bg-slate-700 border border-slate-700 px-3 py-1.5 rounded-lg transition text-slate-200">📋 Copy Code</button>
                     </div>
                     <pre class="bg-slate-950 p-4 rounded-xl overflow-x-auto text-xs text-emerald-400 font-mono border border-slate-800"><code id="code2">import { useState } from 'react';
@@ -234,18 +277,16 @@ export default function FormHandler() {
 
     </main>
 
-    <!-- Interactive JavaScript Logic -->
+    <!-- Script Logic -->
     <script>
-        // Tab Switcher
         function switchTab(tabId) {
-            ['dashboard', 'mock', 'quiz', 'coding'].forEach(id => {
+            ['dashboard', 'qa', 'mock', 'coding'].forEach(id => {
                 document.getElementById('tab-' + id).classList.add('hidden');
             });
             document.getElementById('tab-' + tabId).classList.remove('hidden');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Master Countdown Timer (55 Minutes)
         let totalSeconds = 55 * 60;
         setInterval(() => {
             if (totalSeconds > 0) {
@@ -256,13 +297,12 @@ export default function FormHandler() {
             }
         }, 1000);
 
-        // Mock Q&A Data
         const mockQuestions = [
-            { q: "Can you explain the key differences between let, const, and var in JavaScript?", hint: "Mention function vs block scope and hoisting rules." },
-            { q: "How does the useEffect hook handle component lifecycles in React?", hint: "Discuss how the dependency array maps to mount, update, and unmount phases." },
-            { q: "How does Tailwind CSS handle responsive design differently than standard CSS?", hint: "Mention mobile-first utility prefixes like sm:, md:, and lg:." },
-            { q: "What strategies do you use for optimizing initial load performance in a React app?", hint: "Talk about code splitting with React.lazy, WebP images, and asset optimization." },
-            { q: "Why is semantic HTML important for accessibility standards?", hint: "Discuss screen reader compatibility and Lighthouse audits." }
+            { q: "Can you explain the key differences between let, const, and var in JavaScript?", hint: "Mention function vs block scope and hoisting." },
+            { q: "How does the useEffect hook handle component lifecycles in React?", hint: "Discuss how dependency array maps to mount/update phases." },
+            { q: "How does Tailwind CSS handle responsive design differently than standard CSS?", hint: "Mention mobile-first utility prefixes like sm: and md:." },
+            { q: "What strategies do you use for optimizing initial load performance in a React app?", hint: "Talk about code splitting with React.lazy and asset optimization." },
+            { q: "Why is semantic HTML important for accessibility standards?", hint: "Discuss screen reader compatibility." }
         ];
         let currentQIndex = 0;
 
@@ -286,83 +326,10 @@ export default function FormHandler() {
                 const utterance = new SpeechSynthesisUtterance(text);
                 window.speechSynthesis.speak(utterance);
             } else {
-                alert('Speech synthesis not supported on this browser.');
+                alert('Speech synthesis not supported.');
             }
         }
 
-        // Quiz Data
-        const quizData = [
-            {
-                q: "What does the dependency array in useEffect control?",
-                options: [
-                    "When the component is initially deleted from DOM",
-                    "When the effect callback re-runs based on value changes",
-                    "The global CSS styling of the application",
-                    "None of the above"
-                ],
-                correct: 1
-            },
-            {
-                q: "Which Tailwind utility defines a responsive medium screen breakpoint?",
-                options: ["tab:", "md:", "lg:", "screen-mid:"],
-                correct: 1
-            },
-            {
-                q: "How do you prevent prop drilling in large React applications?",
-                options: ["Using inline styles", "Using React Context API or state management libraries", "Deleting props entirely", "Using nested divs"],
-                correct: 1
-            }
-        ];
-        let currentQuizIndex = 0;
-        let score = 0;
-
-        function loadQuiz() {
-            if (currentQuizIndex >= quizData.length) {
-                document.getElementById('tab-quiz').innerHTML = `
-                    <div class="bg-slate-900 border border-slate-800 p-8 rounded-2xl text-center space-y-4">
-                        <h2 class="text-2xl font-bold text-emerald-400">🎉 Quiz Completed!</h2>
-                        <p class="text-slate-300">Your final score: <span class="text-amber-400 font-bold">${score} / ${quizData.length}</span></p>
-                        <button onclick="currentQuizIndex=0; score=0; loadQuiz(); switchTab('dashboard');" class="bg-emerald-500 text-slate-950 font-bold px-6 py-2 rounded-xl">Back to Dashboard</button>
-                    </div>
-                `;
-                return;
-            }
-
-            const item = quizData[currentQuizIndex];
-            document.getElementById('quizProg').innerText = `${currentQuizIndex + 1} / ${quizData.length}`;
-            document.getElementById('quizScore').innerText = score;
-            document.getElementById('quizQuestion').innerText = item.q;
-            
-            const optionsContainer = document.getElementById('quizOptions');
-            optionsContainer.innerHTML = '';
-            item.options.forEach((opt, idx) => {
-                const btn = document.createElement('button');
-                btn.className = "w-full text-left p-4 bg-slate-950 hover:bg-slate-800 border border-slate-800 rounded-xl transition text-sm text-slate-200";
-                btn.innerText = opt;
-                btn.onclick = () => checkQuizAnswer(idx, item.correct);
-                optionsContainer.appendChild(btn);
-            });
-            document.getElementById('quizFeedback').classList.add('hidden');
-        }
-
-        function checkQuizAnswer(selected, correct) {
-            const feedback = document.getElementById('quizFeedback');
-            feedback.classList.remove('hidden');
-            if (selected === correct) {
-                score++;
-                feedback.className = "p-4 rounded-xl text-sm font-medium bg-emerald-500/10 text-emerald-300 border border-emerald-500/30";
-                feedback.innerText = "✅ Correct answer! Great job.";
-            } else {
-                feedback.className = "p-4 rounded-xl text-sm font-medium bg-rose-500/10 text-rose-300 border border-rose-500/30";
-                feedback.innerText = "❌ Incorrect. Keep practicing!";
-            }
-            setTimeout(() => {
-                currentQuizIndex++;
-                loadQuiz();
-            }, 1500);
-        }
-
-        // Copy Code Helper
         function copySnippet(elementId, btn) {
             const codeText = document.getElementById(elementId).innerText;
             navigator.clipboard.writeText(codeText).then(() => {
@@ -375,9 +342,6 @@ export default function FormHandler() {
                 }, 2000);
             });
         }
-
-        // Initialize Quiz on load
-        loadQuiz();
     </script>
 </body>
 </html>
