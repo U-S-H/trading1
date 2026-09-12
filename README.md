@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>micro1 AI Interview Master Sheet & Simulator</title>
+    <title>micro1 AI Interview Master Sheet & Pro Simulator</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @keyframes float {
@@ -11,6 +11,12 @@
         }
         .animate-float { animation: float 3s ease-in-out infinite; }
         .glow-effect { box-shadow: 0 0 25px rgba(16, 185, 129, 0.2); }
+        
+        /* Flashcard 3D Flip Styles */
+        .perspective-1000 { perspective: 1000px; }
+        .transform-style-3d { transform-style: preserve-3d; }
+        .backface-hidden { backface-visibility: hidden; }
+        .rotate-y-180 { transform: rotateY(180deg); }
     </style>
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen font-sans selection:bg-emerald-500 selection:text-slate-950">
@@ -19,14 +25,15 @@
     <header class="sticky top-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 px-4 py-3 flex items-center justify-between">
         <div class="flex items-center gap-3">
             <div class="w-3 h-3 rounded-full bg-emerald-500 animate-ping"></div>
-            <span class="font-bold tracking-wider text-emerald-400 text-sm md:text-base">micro1 AI Interview Hub</span>
+            <span class="font-bold tracking-wider text-emerald-400 text-sm md:text-base">micro1 AI Interview Hub Pro</span>
         </div>
-        <div class="flex items-center gap-3 text-xs md:text-sm">
+        <div class="flex items-center gap-2 md:gap-3 text-xs md:text-sm">
             <div class="bg-slate-800 border border-slate-700 px-3 py-1 rounded-full flex items-center gap-2">
-                <span class="text-slate-400">Interview Timer:</span>
+                <span class="text-slate-400">Timer:</span>
                 <span id="masterTimer" class="font-mono text-amber-400 font-bold">55:00</span>
             </div>
             <button onclick="switchTab('dashboard')" class="bg-slate-800 hover:bg-slate-700 px-3 py-1.5 rounded-lg transition text-slate-200">Dashboard</button>
+            <button onclick="switchTab('bookmarks')" class="bg-slate-800 hover:bg-slate-700 px-3 py-1.5 rounded-lg transition text-amber-300">⭐ Saved (<span id="bookmarkCount">0</span>)</button>
         </div>
     </header>
 
@@ -34,7 +41,7 @@
 
         <!-- DASHBOARD TAB -->
         <div id="tab-dashboard" class="space-y-8">
-            <!-- Hero Banner based on micro1 exact instructions -->
+            <!-- Hero Banner -->
             <div class="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 border border-slate-700/60 p-6 md:p-8 rounded-2xl relative overflow-hidden glow-effect space-y-6">
                 <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
                 
@@ -42,152 +49,94 @@
                     <div class="space-y-3 text-center md:text-left">
                         <span class="bg-emerald-500/10 text-emerald-400 text-xs px-3 py-1 rounded-full border border-emerald-500/20 font-medium">micro1 Assessment Guidelines</span>
                         <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight text-white">~55 Minutes Q&A + <span class="text-emerald-400">25-Min Coding</span></h1>
-                        <p class="text-slate-400 max-w-xl text-sm md:text-base">This interview takes ~55 minutes with limited time per question. Answer by speaking or typing. Ensure a quiet spot and stable internet[span_2](start_span)[span_2](end_span). Recorded and available in your profile link[span_3](start_span)[span_3](end_span). Followed by a 25-minute coding exercise[span_4](start_span)[span_4](end_span).</p>
+                        <p class="text-slate-400 max-w-xl text-sm md:text-base">Advanced prep hub loaded with Flashcards, Live Timers, Bookmarks, and Confetti celebration mode!</p>
                     </div>
                     <div class="relative w-28 h-28 flex items-center justify-center bg-slate-950 rounded-full border-2 border-emerald-500/40 animate-float shadow-lg shadow-emerald-950">
                         <div class="absolute inset-0 rounded-full bg-emerald-500/5 animate-pulse"></div>
-                        <span class="text-3xl">🎙️</span>
+                        <span class="text-3xl">🚀</span>
                     </div>
                 </div>
 
                 <!-- Action Launch Cards -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t border-slate-700/50">
                     <button onclick="switchTab('qa')" class="bg-slate-800/80 hover:bg-slate-800 border border-slate-700 p-4 rounded-xl text-left transition hover:border-emerald-500/50 group">
-                        <div class="text-2xl mb-2 group-hover:scale-110 transition-transform">📋</div>
-                        <h3 class="font-bold text-emerald-300">All Topics Q&A Prep</h3>
-                        <p class="text-xs text-slate-400 mt-1">Review exact questions and structured answers for all 6 topics.</p>
+                        <div class="text-2xl mb-2 group-hover:scale-110 transition-transform">🃏</div>
+                        <h3 class="font-bold text-emerald-300">Flashcards & Q&A Bank</h3>
+                        <p class="text-xs text-slate-400 mt-1">Flip cards to reveal answers and bookmark tricky questions.</p>
                     </button>
                     <button onclick="switchTab('mock')" class="bg-slate-800/80 hover:bg-slate-800 border border-slate-700 p-4 rounded-xl text-left transition hover:border-emerald-500/50 group">
                         <div class="text-2xl mb-2 group-hover:scale-110 transition-transform">🤖</div>
                         <h3 class="font-bold text-emerald-300">Interactive Mock Simulator</h3>
-                        <p class="text-xs text-slate-400 mt-1">Practice with speech/text simulator and custom interview timer.</p>
+                        <p class="text-xs text-slate-400 mt-1">Per-question stopwatch, shuffle mode, and export answers to .txt.</p>
                     </button>
                     <button onclick="switchTab('coding')" class="bg-slate-800/80 hover:bg-slate-800 border border-slate-700 p-4 rounded-xl text-left transition hover:border-emerald-500/50 group">
                         <div class="text-2xl mb-2 group-hover:scale-110 transition-transform">💻</div>
                         <h3 class="font-bold text-emerald-300">25-Min Coding Arena</h3>
-                        <p class="text-xs text-slate-400 mt-1">Data-fetching patterns and dynamic form state handling code templates.</p>
+                        <p class="text-xs text-slate-400 mt-1">Data-fetching patterns and component templates.</p>
                     </button>
                 </div>
             </div>
-
-            <!-- Topics List from Screenshot -->
-            <div class="space-y-4">
-                <h2 class="text-xl font-bold text-slate-200 border-l-4 border-emerald-400 pl-3">You will be interviewed on these topics[span_5](start_span)[span_5](end_span):</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-1">
-                        <span class="text-xs text-emerald-400 font-mono">Topic 1</span>
-                        <h3 class="font-semibold text-amber-300">React + JavaScript Frontend Engineering[span_6](start_span)[span_6](end_span)</h3>
-                    </div>
-                    <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-1">
-                        <span class="text-xs text-emerald-400 font-mono">Topic 2</span>
-                        <h3 class="font-semibold text-amber-300">Tailwind CSS + Responsive UI / Design Systems[span_7](start_span)[span_7](end_span)</h3>
-                    </div>
-                    <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-1">
-                        <span class="text-xs text-emerald-400 font-mono">Topic 3</span>
-                        <h3 class="font-semibold text-amber-300">Pixel-perfect UI Implementation & Designer Collaboration[span_8](start_span)[span_8](end_span)</h3>
-                    </div>
-                    <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-1">
-                        <span class="text-xs text-emerald-400 font-mono">Topic 4</span>
-                        <h3 class="font-semibold text-amber-300">Frontend Performance Optimization[span_9](start_span)[span_9](end_span)</h3>
-                    </div>
-                    <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-1">
-                        <span class="text-xs text-emerald-400 font-mono">Topic 5</span>
-                        <h3 class="font-semibold text-amber-300">Accessibility (a11y) & Usability Standards[span_10](start_span)[span_10](end_span)</h3>
-                    </div>
-                    <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-1">
-                        <span class="text-xs text-emerald-400 font-mono">Topic 6</span>
-                        <h3 class="font-semibold text-amber-300">Custom questions defined for the job[span_11](start_span)[span_11](end_span)</h3>
-                    </div>
-                </div>
-            </div>
         </div>
 
-        <!-- Q&A PREP TAB -->
+        <!-- Q&A PREP & FLASHCARD TAB -->
         <div id="tab-qa" class="hidden space-y-6">
-            <div class="flex items-center justify-between border-b border-slate-800 pb-4">
-                <h2 class="text-2xl font-bold text-emerald-400">Comprehensive Interview Q&A Bank</h2>
-                <button onclick="switchTab('dashboard')" class="text-xs bg-slate-800 hover:bg-slate-700 px-3 py-1.5 rounded-lg transition">Back</button>
+            <div class="flex flex-wrap items-center justify-between border-b border-slate-800 pb-4 gap-4">
+                <div>
+                    <h2 class="text-2xl font-bold text-emerald-400">Interactive Flashcard Q&A Bank</h2>
+                    <p class="text-xs text-slate-400">Click any card to flip it and reveal the answer!</p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button onclick="toggleViewMode()" id="viewModeBtn" class="bg-slate-800 hover:bg-slate-700 text-xs text-amber-300 px-3 py-1.5 rounded-lg border border-slate-700 transition">Switch to List View</button>
+                    <button onclick="switchTab('dashboard')" class="text-xs bg-slate-800 hover:bg-slate-700 px-3 py-1.5 rounded-lg transition">Back</button>
+                </div>
             </div>
 
-            <div class="space-y-6">
-                <!-- Topic 1 -->
-                <div class="bg-slate-900 p-5 rounded-xl border border-slate-800 space-y-3">
-                    <h3 class="text-lg font-bold text-amber-300">1. React + JavaScript Frontend Engineering</h3>
-                    <div class="border-t border-slate-800 pt-3 space-y-2">
-                        <p class="font-medium text-slate-200 text-sm">Q: Difference between let, const, and var?</p>
-                        <p class="text-slate-400 text-xs"><span class="text-emerald-400 font-semibold">Answer:</span> <code class="bg-slate-950 px-1 rounded text-amber-200">var</code> is function-scoped and hoisted with undefined. <code class="bg-slate-950 px-1 rounded text-amber-200">let</code> and <code class="bg-slate-950 px-1 rounded text-amber-200">const</code> are block-scoped. <code class="bg-slate-950 px-1 rounded text-amber-200">let</code> allows reassignment, whereas <code class="bg-slate-950 px-1 rounded text-amber-200">const</code> does not.</p>
-                    </div>
-                    <div class="border-t border-slate-800 pt-3 space-y-2">
-                        <p class="font-medium text-slate-200 text-sm">Q: How does useEffect handle component lifecycles?</p>
-                        <p class="text-slate-400 text-xs"><span class="text-emerald-400 font-semibold">Answer:</span> Combines componentDidMount, componentDidUpdate, and componentWillUnmount based on the dependency array.</p>
-                    </div>
-                </div>
-
-                <!-- Topic 2 -->
-                <div class="bg-slate-900 p-5 rounded-xl border border-slate-800 space-y-3">
-                    <h3 class="text-lg font-bold text-amber-300">2. Tailwind CSS + Responsive UI / Design Systems</h3>
-                    <div class="border-t border-slate-800 pt-3 space-y-2">
-                        <p class="font-medium text-slate-200 text-sm">Q: How does Tailwind handle responsive design?</p>
-                        <p class="text-slate-400 text-xs"><span class="text-emerald-400 font-semibold">Answer:</span> Uses a mobile-first philosophy with breakpoint prefixes like <code class="bg-slate-950 px-1 rounded text-amber-200">sm:</code>, <code class="bg-slate-950 px-1 rounded text-amber-200">md:</code>, and <code class="bg-slate-950 px-1 rounded text-amber-200">lg:</code>.</p>
-                    </div>
-                </div>
-
-                <!-- Topic 3 -->
-                <div class="bg-slate-900 p-5 rounded-xl border border-slate-800 space-y-3">
-                    <h3 class="text-lg font-bold text-amber-300">3. Pixel-perfect UI Implementation & Designer Collaboration</h3>
-                    <div class="border-t border-slate-800 pt-3 space-y-2">
-                        <p class="font-medium text-slate-200 text-sm">Q: How do you translate a Figma design into Tailwind components?</p>
-                        <p class="text-slate-400 text-xs"><span class="text-emerald-400 font-semibold">Answer:</span> Extract exact tokens (colors, typography, spacing) and configure theme extensions in <code class="bg-slate-950 px-1 rounded text-amber-200">tailwind.config.js</code>.</p>
-                    </div>
-                </div>
-
-                <!-- Topic 4 -->
-                <div class="bg-slate-900 p-5 rounded-xl border border-slate-800 space-y-3">
-                    <h3 class="text-lg font-bold text-amber-300">4. Frontend Performance Optimization</h3>
-                    <div class="border-t border-slate-800 pt-3 space-y-2">
-                        <p class="font-medium text-slate-200 text-sm">Q: How do you resolve performance bottlenecks in React?</p>
-                        <p class="text-slate-400 text-xs"><span class="text-emerald-400 font-semibold">Answer:</span> Profile using React DevTools, eliminate unnecessary re-renders with <code class="bg-slate-950 px-1 rounded text-amber-200">React.memo</code>, <code class="bg-slate-950 px-1 rounded text-amber-200">useMemo</code>, and code-split with <code class="bg-slate-950 px-1 rounded text-amber-200">React.lazy</code>.</p>
-                    </div>
-                </div>
-
-                <!-- Topic 5 -->
-                <div class="bg-slate-900 p-5 rounded-xl border border-slate-800 space-y-3">
-                    <h3 class="text-lg font-bold text-amber-300">5. Accessibility (a11y) & Usability Standards</h3>
-                    <div class="border-t border-slate-800 pt-3 space-y-2">
-                        <p class="font-medium text-slate-200 text-sm">Q: Why is semantic HTML critical for accessibility?</p>
-                        <p class="text-slate-400 text-xs"><span class="text-emerald-400 font-semibold">Answer:</span> Screen readers rely on tags like <code class="bg-slate-950 px-1 rounded text-amber-200">&lt;button&gt;</code> and <code class="bg-slate-950 px-1 rounded text-amber-200">&lt;nav&gt;</code> to interpret structural hierarchy properly.</p>
-                    </div>
-                </div>
-
-                <!-- Topic 6 -->
-                <div class="bg-slate-900 p-5 rounded-xl border border-slate-800 space-y-3">
-                    <h3 class="text-lg font-bold text-amber-300">6. Custom Questions Defined for the Job</h3>
-                    <div class="border-t border-slate-800 pt-3 space-y-2">
-                        <p class="font-medium text-slate-200 text-sm">Q: Tell me about a custom web app built from scratch.</p>
-                        <p class="text-slate-400 text-xs"><span class="text-emerald-400 font-semibold">Answer Strategy:</span> Detail architectural choices, custom component layouts, clean state management, and deployment pipelines.</p>
-                    </div>
-                </div>
+            <!-- Flashcard Container -->
+            <div id="flashcardContainer" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Dynamically populated via JS -->
             </div>
         </div>
 
-        <!-- INTERACTIVE MOCK SIMULATOR TAB -->
-        <div id="tab-mock" class="hidden space-y-6">
+        <!-- BOOKMARKS TAB -->
+        <div id="tab-bookmarks" class="hidden space-y-6">
             <div class="flex items-center justify-between border-b border-slate-800 pb-4">
-                <h2 class="text-2xl font-bold text-emerald-400">AI Mock Interview Simulator</h2>
+                <h2 class="text-2xl font-bold text-amber-400">Saved Bookmarked Questions</h2>
                 <button onclick="switchTab('dashboard')" class="text-xs bg-slate-800 hover:bg-slate-700 px-3 py-1.5 rounded-lg transition">Back</button>
             </div>
+            <div id="bookmarksList" class="space-y-4">
+                <!-- Populated via JS -->
+            </div>
+        </div>
 
-            <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl space-y-6 shadow-xl">
+        <!-- MOCK SIMULATOR TAB -->
+        <div id="tab-mock" class="hidden space-y-6">
+            <div class="flex flex-wrap items-center justify-between border-b border-slate-800 pb-4 gap-4">
+                <div class="flex items-center gap-3">
+                    <h2 class="text-2xl font-bold text-emerald-400">AI Mock Simulator</h2>
+                    <button onclick="shuffleMockQuestions()" class="bg-slate-800 hover:bg-slate-700 text-xs px-3 py-1.5 rounded-lg border border-slate-700 text-amber-300 transition">🔀 Shuffle Questions</button>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="bg-slate-900 border border-slate-700 px-3 py-1 rounded-lg text-xs font-mono">
+                        ⏱️ Question Time: <span id="questionTimer" class="text-amber-400 font-bold">00:00</span>
+                    </div>
+                    <button onclick="switchTab('dashboard')" class="text-xs bg-slate-800 hover:bg-slate-700 px-3 py-1.5 rounded-lg transition">Back</button>
+                </div>
+            </div>
+
+            <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl space-y-6 shadow-xl relative overflow-hidden">
                 <div class="flex items-start gap-4 bg-slate-950 p-5 rounded-xl border border-slate-800">
                     <div class="w-10 h-10 rounded-full bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center shrink-0 text-lg">🤖</div>
-                    <div class="space-y-2">
-                        <span class="text-xs text-emerald-400 font-mono">Question <span id="currentQNum">1</span> of 5</span>
+                    <div class="space-y-2 flex-1">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-emerald-400 font-mono">Question <span id="currentQNum">1</span> of <span id="totalQCount">3</span></span>
+                            <button onclick="bookmarkCurrentMock()" id="mockBookmarkBtn" class="text-xs text-slate-400 hover:text-amber-300 transition">⭐ Save Question</button>
+                        </div>
                         <p id="aiQuestionText" class="text-slate-200 text-base md:text-lg font-medium">Can you explain the key differences between let, const, and var in JavaScript?</p>
                     </div>
                 </div>
 
                 <div class="space-y-3">
-                    <label class="text-xs font-medium text-slate-400">Your Practice Answer (Type or speak):</label>
+                    <label class="text-xs font-medium text-slate-400">Your Practice Answer:</label>
                     <textarea id="userAnswerInput" rows="4" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-4 text-slate-100 focus:outline-none focus:border-emerald-500 transition text-sm" placeholder="Type your response here..."></textarea>
                 </div>
 
@@ -196,7 +145,10 @@
                         <button onclick="playAISpeech()" class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2 rounded-xl text-xs font-semibold transition border border-slate-700">🔊 Listen</button>
                         <button onclick="showAIHint()" class="bg-slate-800 hover:bg-slate-700 text-amber-300 px-4 py-2 rounded-xl text-xs font-semibold transition border border-slate-700">💡 Pro Hint</button>
                     </div>
-                    <button onclick="nextMockQuestion()" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold px-6 py-2.5 rounded-xl text-sm transition">Next Question ➔</button>
+                    <div class="flex items-center gap-2">
+                        <button onclick="exportNotes()" class="bg-slate-800 hover:bg-slate-700 text-cyan-300 px-4 py-2 rounded-xl text-xs font-semibold transition border border-slate-700">📥 Export .txt</button>
+                        <button onclick="nextMockQuestion()" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold px-6 py-2.5 rounded-xl text-sm transition">Next Question ➔</button>
+                    </div>
                 </div>
 
                 <div id="hintBox" class="hidden bg-amber-500/10 border border-amber-500/30 p-4 rounded-xl text-amber-200 text-xs space-y-1">
@@ -205,23 +157,19 @@
             </div>
         </div>
 
-        <!-- 25-MIN CODING EXERCISE ARENA TAB -->
+        <!-- CODING ARENA TAB -->
         <div id="tab-coding" class="hidden space-y-6">
             <div class="flex items-center justify-between border-b border-slate-800 pb-4">
                 <h2 class="text-2xl font-bold text-emerald-400">25-Minute Coding Exercise Arena</h2>
                 <button onclick="switchTab('dashboard')" class="text-xs bg-slate-800 hover:bg-slate-700 px-3 py-1.5 rounded-lg transition">Back</button>
             </div>
 
-            <p class="text-xs text-slate-400">Right after the ~55 min Q&A portion, there is a 25-minute coding exercise[span_12](start_span)[span_12](end_span). Memorize and practice these core patterns:</p>
-
-            <div class="space-y-6">
-                <!-- Code Snippet 1 -->
-                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl space-y-4">
-                    <div class="flex items-center justify-between">
-                        <h3 class="font-semibold text-emerald-300">Pattern 1: Data Fetching Table/List (Crucial)</h3>
-                        <button onclick="copySnippet('code1', this)" class="text-xs bg-slate-800 hover:bg-slate-700 border border-slate-700 px-3 py-1.5 rounded-lg transition text-slate-200">📋 Copy Code</button>
-                    </div>
-                    <pre class="bg-slate-950 p-4 rounded-xl overflow-x-auto text-xs text-emerald-400 font-mono border border-slate-800"><code id="code1">import { useState, useEffect } from 'react';
+            <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl space-y-4">
+                <div class="flex items-center justify-between">
+                    <h3 class="font-semibold text-emerald-300">Pattern 1: Data Fetching Table/List (Crucial)</h3>
+                    <button onclick="copySnippet('code1', this)" class="text-xs bg-slate-800 hover:bg-slate-700 border border-slate-700 px-3 py-1.5 rounded-lg transition text-slate-200">📋 Copy Code</button>
+                </div>
+                <pre class="bg-slate-950 p-4 rounded-xl overflow-x-auto text-xs text-emerald-400 font-mono border border-slate-800"><code id="code1">import { useState, useEffect } from 'react';
 
 export default function DataFetcher() {
   const [data, setData] = useState([]);
@@ -245,48 +193,26 @@ export default function DataFetcher() {
     &lt;/div&gt;
   );
 }</code></pre>
-                </div>
-
-                <!-- Code Snippet 2 -->
-                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl space-y-4">
-                    <div class="flex items-center justify-between">
-                        <h3 class="font-semibold text-emerald-300">Pattern 2: Dynamic Form & State Handling</h3>
-                        <button onclick="copySnippet('code2', this)" class="text-xs bg-slate-800 hover:bg-slate-700 border border-slate-700 px-3 py-1.5 rounded-lg transition text-slate-200">📋 Copy Code</button>
-                    </div>
-                    <pre class="bg-slate-950 p-4 rounded-xl overflow-x-auto text-xs text-emerald-400 font-mono border border-slate-800"><code id="code2">import { useState } from 'react';
-
-export default function FormHandler() {
-  const [form, setForm] = useState({ name: '', email: '' });
-
-  return (
-    &lt;form onSubmit={(e) => { e.preventDefault(); alert('Submitted!'); }} className="p-4 space-y-3 max-w-sm"&gt;
-      &lt;input 
-        type="text" 
-        placeholder="Name"
-        value={form.name}
-        onChange={e => setForm({...form, name: e.target.value})}
-        className="w-full p-2 bg-slate-800 rounded border border-slate-700 text-white"
-      /&gt;
-      &lt;button type="submit" className="bg-emerald-500 text-slate-950 font-bold px-4 py-2 rounded"&gt;Submit&lt;/button&gt;
-    &lt;/form&gt;
-  );
-}</code></pre>
-                </div>
             </div>
         </div>
 
     </main>
 
+    <!-- Confetti Container -->
+    <div id="confettiContainer" class="fixed inset-0 pointer-events-none z-50 overflow-hidden hidden"></div>
+
     <!-- Script Logic -->
     <script>
         function switchTab(tabId) {
-            ['dashboard', 'qa', 'mock', 'coding'].forEach(id => {
+            ['dashboard', 'qa', 'bookmarks', 'mock', 'coding'].forEach(id => {
                 document.getElementById('tab-' + id).classList.add('hidden');
             });
             document.getElementById('tab-' + tabId).classList.remove('hidden');
+            if (tabId === 'bookmarks') renderBookmarks();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
+        // Master Timer
         let totalSeconds = 55 * 60;
         setInterval(() => {
             if (totalSeconds > 0) {
@@ -297,21 +223,150 @@ export default function FormHandler() {
             }
         }, 1000);
 
-        const mockQuestions = [
-            { q: "Can you explain the key differences between let, const, and var in JavaScript?", hint: "Mention function vs block scope and hoisting." },
-            { q: "How does the useEffect hook handle component lifecycles in React?", hint: "Discuss how dependency array maps to mount/update phases." },
-            { q: "How does Tailwind CSS handle responsive design differently than standard CSS?", hint: "Mention mobile-first utility prefixes like sm: and md:." },
-            { q: "What strategies do you use for optimizing initial load performance in a React app?", hint: "Talk about code splitting with React.lazy and asset optimization." },
-            { q: "Why is semantic HTML important for accessibility standards?", hint: "Discuss screen reader compatibility." }
-        ];
-        let currentQIndex = 0;
+        // Question Stopwatch Timer
+        let qSeconds = 0;
+        let qTimerInterval = setInterval(() => {
+            qSeconds++;
+            let mins = Math.floor(qSeconds / 60);
+            let secs = qSeconds % 60;
+            document.getElementById('questionTimer').innerText = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }, 1000);
 
-        function nextMockQuestion() {
-            currentQIndex = (currentQIndex + 1) % mockQuestions.length;
+        // Q&A Database & Flashcards
+        let questionsBank = [
+            { id: 1, topic: "React + JS", q: "Difference between let, const, and var?", a: "var is function-scoped and hoisted. let and const are block-scoped.", hint: "Mention block scope and hoisting." },
+            { id: 2, topic: "Tailwind CSS", q: "How does Tailwind handle responsive design?", a: "Uses a mobile-first philosophy with prefixes like sm: and md:.", hint: "Mention mobile-first utility prefixes." },
+            { id: 3, topic: "React Hooks", q: "How does useEffect handle component lifecycles?", a: "Dependency array maps to mount/update phases.", hint: "Discuss dependency array behavior." },
+            { id: 4, topic: "Performance", q: "What is code splitting in React?", a: "Loading parts of the app lazily using React.lazy and Suspense to reduce initial bundle size.", hint: "Mention React.lazy and Suspense." }
+        ];
+
+        let mockQuestions = [...questionsBank];
+        let currentQIndex = 0;
+        let isListView = false;
+        let userNotesHistory = [];
+
+        // Bookmarks system using LocalStorage
+        function getBookmarks() {
+            return JSON.parse(localStorage.getItem('micro1_bookmarks') || '[]');
+        }
+
+        function updateBookmarkCount() {
+            document.getElementById('bookmarkCount').innerText = getBookmarks().length;
+        }
+
+        function toggleBookmark(id) {
+            let bookmarks = getBookmarks();
+            if (bookmarks.includes(id)) {
+                bookmarks = bookmarks.filter(b => b !== id);
+            } else {
+                bookmarks.push(id);
+            }
+            localStorage.setItem('micro1_bookmarks', JSON.stringify(bookmarks));
+            updateBookmarkCount();
+            renderFlashcards();
+        }
+
+        function bookmarkCurrentMock() {
+            const currentItem = mockQuestions[currentQIndex];
+            toggleBookmark(currentItem.id);
+            alert("Question bookmarked successfully, sweetie!");
+        }
+
+        function renderBookmarks() {
+            const container = document.getElementById('bookmarksList');
+            const bookmarks = getBookmarks();
+            const savedItems = questionsBank.filter(q => bookmarks.includes(q.id));
+
+            if (savedItems.length === 0) {
+                container.innerHTML = `<p class="text-slate-400 text-sm">No bookmarked questions yet. Click '⭐ Save' on questions to save them here!</p>`;
+                return;
+            }
+
+            container.innerHTML = savedItems.map(item => `
+                <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-2">
+                    <span class="text-xs text-amber-400 font-mono">${item.topic}</span>
+                    <h3 class="font-bold text-slate-100 text-sm">${item.q}</h3>
+                    <p class="text-xs text-slate-400"><span class="text-emerald-400 font-semibold">Answer:</span> ${item.a}</p>
+                </div>
+            `).join('');
+        }
+
+        // Render Flashcards / List View
+        function renderFlashcards() {
+            const container = document.getElementById('flashcardContainer');
+            const bookmarks = getBookmarks();
+
+            if (isListView) {
+                container.innerHTML = questionsBank.map(item => `
+                    <div class="bg-slate-900 border border-slate-800 p-5 rounded-xl space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-emerald-400 font-mono">${item.topic}</span>
+                            <button onclick="toggleBookmark(${item.id})" class="text-xs text-amber-300">${bookmarks.includes(item.id) ? '⭐ Saved' : '☆ Save'}</button>
+                        </div>
+                        <h3 class="font-bold text-slate-200 text-sm">Q: ${item.q}</h3>
+                        <p class="text-xs text-slate-400"><span class="text-emerald-400 font-semibold">Ans:</span> ${item.a}</p>
+                    </div>
+                `).join('');
+            } else {
+                container.innerHTML = questionsBank.map(item => `
+                    <div class="h-56 perspective-1000 cursor-pointer group" onclick="this.querySelector('.transform-style-3d').classList.toggle('rotate-y-180')">
+                        <div class="relative w-full h-full duration-500 transform-style-3d bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl flex flex-col justify-between">
+                            <!-- Front Side -->
+                            <div class="absolute inset-0 p-6 backface-hidden flex flex-col justify-between">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xs text-emerald-400 font-mono">${item.topic}</span>
+                                    <span class="text-xs text-slate-500">🔄 Click to Flip</span>
+                                </div>
+                                <h3 class="font-bold text-slate-100 text-base md:text-lg">${item.q}</h3>
+                                <p class="text-xs text-slate-500 text-right">Card #${item.id}</p>
+                            </div>
+                            <!-- Back Side -->
+                            <div class="absolute inset-0 p-6 backface-hidden rotate-y-180 bg-slate-880 bg-slate-900 border border-emerald-500/30 rounded-2xl flex flex-col justify-between">
+                                <span class="text-xs text-amber-400 font-mono">Answer Key</span>
+                                <p class="text-xs md:text-sm text-slate-300">${item.a}</p>
+                                <p class="text-xs text-emerald-400 text-right">Flip back ↩</p>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function toggleViewMode() {
+            isListView = !isListView;
+            document.getElementById('viewModeBtn').innerText = isListView ? "Switch to Flashcard View" : "Switch to List View";
+            renderFlashcards();
+        }
+
+        // Mock Navigation & Shuffle
+        function shuffleMockQuestions() {
+            mockQuestions = [...questionsBank].sort(() => Math.random() - 0.5);
+            currentQIndex = 0;
+            qSeconds = 0;
+            loadMockQuestion();
+            alert("Questions shuffled successfully, sweetie!");
+        }
+
+        function loadMockQuestion() {
             document.getElementById('currentQNum').innerText = currentQIndex + 1;
+            document.getElementById('totalQCount').innerText = mockQuestions.length;
             document.getElementById('aiQuestionText').innerText = mockQuestions[currentQIndex].q;
             document.getElementById('userAnswerInput').value = '';
             document.getElementById('hintBox').classList.add('hidden');
+            qSeconds = 0;
+        }
+
+        function nextMockQuestion() {
+            const ans = document.getElementById('userAnswerInput').value;
+            userNotesHistory.push({ q: mockQuestions[currentQIndex].q, answer: ans });
+
+            currentQIndex++;
+            if (currentQIndex >= mockQuestions.length) {
+                triggerConfetti();
+                alert("Wonderful job sweetie! You completed all mock interview questions!");
+                currentQIndex = 0;
+            }
+            loadMockQuestion();
         }
 
         function showAIHint() {
@@ -330,6 +385,52 @@ export default function FormHandler() {
             }
         }
 
+        // Export Notes to .txt
+        function exportNotes() {
+            let content = "--- micro1 AI Mock Interview Practice Notes ---\n\n";
+            userNotesHistory.forEach((item, index) => {
+                content += `Q${index + 1}: ${item.q}\nMy Answer: ${item.answer}\n\n`;
+            });
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'micro1_practice_notes.txt';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // Confetti Effect
+        function triggerConfetti() {
+            const container = document.getElementById('confettiContainer');
+            container.classList.remove('hidden');
+            container.innerHTML = '';
+
+            for (let i = 0; i < 50; i++) {
+                const conf = document.createElement('div');
+                conf.style.position = 'absolute';
+                conf.style.left = Math.random() * 100 + 'vw';
+                conf.style.top = '-10px';
+                conf.style.width = (Math.random() * 8 + 5) + 'px';
+                conf.style.height = (Math.random() * 12 + 6) + 'px';
+                conf.style.backgroundColor = ['#10b981', '#f59e0b', '#3b82f6', '#ec4899'][Math.floor(Math.random() * 4)];
+                conf.style.opacity = Math.random();
+                conf.style.transform = `rotate(${Math.random() * 360}deg)`;
+                conf.style.transition = `transform 3s ease-in, top 3s ease-in`;
+                container.appendChild(conf);
+
+                setTimeout(() => {
+                    conf.style.top = '105vh';
+                    conf.style.transform += ` rotate(${Math.random() * 500}deg)`;
+                }, 50);
+            }
+
+            setTimeout(() => {
+                container.classList.add('hidden');
+                container.innerHTML = '';
+            }, 3500);
+        }
+
         function copySnippet(elementId, btn) {
             const codeText = document.getElementById(elementId).innerText;
             navigator.clipboard.writeText(codeText).then(() => {
@@ -342,6 +443,10 @@ export default function FormHandler() {
                 }, 2000);
             });
         }
+
+        // Initialize counts and render cards on load
+        updateBookmarkCount();
+        renderFlashcards();
     </script>
 </body>
 </html>
