@@ -46,15 +46,15 @@
                 
                 <div class="border-b border-slate-700 pb-3">
                     <p class="font-medium text-slate-200">Q: Can you explain the difference between let, const, and var in JavaScript?</p>
-                    <p class="text-slate-400 text-sm mt-1"><span class="text-emerald-400 font-semibold">Answer:</span> <code class="bg-slate-900 px-1 rounded text-amber-200">var</code> is function-scoped and hoisted with an undefined value. <code class="bg-slate-900 px-1 rounded text-amber-200">let</code> and <code class="bg-slate-900 px-1 rounded text-amber-200">const</code> are block-scoped. <code class="bg-slate-900 px-1 rounded text-amber-200">let</code> allows reassignment, while <code class="bg-slate-900 px-1 rounded text-amber-200">const</code> prevents reassignment[span_2](start_span)[span_2](end_span).</p>
+                    <p class="text-slate-400 text-sm mt-1"><span class="text-emerald-400 font-semibold">Answer:</span> <code class="bg-slate-900 px-1 rounded text-amber-200">var</code> is function-scoped and hoisted with an undefined value. <code class="bg-slate-900 px-1 rounded text-amber-200">let</code> and <code class="bg-slate-900 px-1 rounded text-amber-200">const</code> are block-scoped. <code class="bg-slate-900 px-1 rounded text-amber-200">let</code> allows reassignment, while <code class="bg-slate-900 px-1 rounded text-amber-200">const</code> prevents reassignment.</p>
                 </div>
                 <div class="border-b border-slate-700 pb-3">
                     <p class="font-medium text-slate-200">Q: How does the useEffect hook handle component lifecycles?</p>
-                    <p class="text-slate-400 text-sm mt-1"><span class="text-emerald-400 font-semibold">Answer:</span> It acts as <code class="bg-slate-900 px-1 rounded text-amber-200">componentDidMount</code>, <code class="bg-slate-900 px-1 rounded text-amber-200">componentDidUpdate</code>, and <code class="bg-slate-900 px-1 rounded text-amber-200">componentWillUnmount</code> combined. The dependency array dictates when it runs[span_3](start_span)[span_3](end_span).</p>
+                    <p class="text-slate-400 text-sm mt-1"><span class="text-emerald-400 font-semibold">Answer:</span> It acts as <code class="bg-slate-900 px-1 rounded text-amber-200">componentDidMount</code>, <code class="bg-slate-900 px-1 rounded text-amber-200">componentDidUpdate</code>, and <code class="bg-slate-900 px-1 rounded text-amber-200">componentWillUnmount</code> combined. The dependency array dictates when it runs.</p>
                 </div>
                 <div>
                     <p class="font-medium text-slate-200">Q: What is Prop Drilling and how do you avoid it?</p>
-                    <p class="text-slate-400 text-sm mt-1"><span class="text-emerald-400 font-semibold">Answer:</span> Prop drilling is passing data through multiple nested components. I avoid it by using React Context API or state management like Zustand or Redux[span_4](start_span)[span_4](end_span).</p>
+                    <p class="text-slate-400 text-sm mt-1"><span class="text-emerald-400 font-semibold">Answer:</span> Prop drilling is passing data through multiple nested components. I avoid it by using React Context API or state management like Zustand or Redux.</p>
                 </div>
             </div>
 
@@ -64,11 +64,11 @@
                 
                 <div class="border-b border-slate-700 pb-3">
                     <p class="font-medium text-slate-200">Q: How does Tailwind handle responsive design differently than traditional CSS?</p>
-                    <p class="text-slate-400 text-sm mt-1"><span class="text-emerald-400 font-semibold">Answer:</span> Tailwind uses a mobile-first approach with utility variants like <code class="bg-slate-900 px-1 rounded text-amber-200">sm:</code>, <code class="bg-slate-900 px-1 rounded text-amber-200">md:</code>, and <code class="bg-slate-900 px-1 rounded text-amber-200">lg:</code> directly applied in markup[span_5](start_span)[span_5](end_span).</p>
+                    <p class="text-slate-400 text-sm mt-1"><span class="text-emerald-400 font-semibold">Answer:</span> Tailwind uses a mobile-first approach with utility variants like <code class="bg-slate-900 px-1 rounded text-amber-200">sm:</code>, <code class="bg-slate-900 px-1 rounded text-amber-200">md:</code>, and <code class="bg-slate-900 px-1 rounded text-amber-200">lg:</code> directly applied in markup.</p>
                 </div>
                 <div>
                     <p class="font-medium text-slate-200">Q: How would you build a reusable button component using Tailwind?</p>
-                    <p class="text-slate-400 text-sm mt-1"><span class="text-emerald-400 font-semibold">Answer:</span> Create a React component accepting variant props and joining classes dynamically using utilities like <code class="bg-slate-900 px-1 rounded text-amber-200">clsx</code> or <code class="bg-slate-900 px-1 rounded text-amber-200">tailwind-merge</code>[span_6](start_span)[span_6](end_span).</p>
+                    <p class="text-slate-400 text-sm mt-1"><span class="text-emerald-400 font-semibold">Answer:</span> Create a React component accepting variant props and joining classes dynamically using utilities like <code class="bg-slate-900 px-1 rounded text-amber-200">clsx</code> or <code class="bg-slate-900 px-1 rounded text-amber-200">tailwind-merge</code>.</p>
                 </div>
             </div>
 
@@ -78,7 +78,7 @@
                 
                 <div>
                     <p class="font-medium text-slate-200">Q: A designer gives you a Figma file with a specific design system. How do you implement it in Tailwind?</p>
-                    <p class="text-slate-400 text-sm mt-1"><span class="text-emerald-400 font-semibold">Answer:</span> Extract exact tokens (colors, typography, spacing) from Figma and configure them inside <code class="bg-slate-900 px-1 rounded text-amber-200">tailwind.config.js</code> to extend the theme[span_7](start_span)[span_7](end_span).</p>
+                    <p class="text-slate-400 text-sm mt-1"><span class="text-emerald-400 font-semibold">Answer:</span> Extract exact tokens (colors, typography, spacing) from Figma and configure them inside <code class="bg-slate-900 px-1 rounded text-amber-200">tailwind.config.js</code> to extend the theme.</p>
                 </div>
             </div>
 
@@ -88,11 +88,11 @@
                 
                 <div class="border-b border-slate-700 pb-3">
                     <p class="font-medium text-slate-200">Q: How do you identify and fix performance bottlenecks in a React app?</p>
-                    <p class="text-slate-400 text-sm mt-1"><span class="text-emerald-400 font-semibold">Answer:</span> Use React DevTools Profiler to find unnecessary re-renders, then optimize using <code class="bg-slate-900 px-1 rounded text-amber-200">React.memo</code>, <code class="bg-slate-900 px-1 rounded text-amber-200">useMemo</code>, or <code class="bg-slate-900 px-1 rounded text-amber-200">useCallback</code>[span_8](start_span)[span_8](end_span).</p>
+                    <p class="text-slate-400 text-sm mt-1"><span class="text-emerald-400 font-semibold">Answer:</span> Use React DevTools Profiler to find unnecessary re-renders, then optimize using <code class="bg-slate-900 px-1 rounded text-amber-200">React.memo</code>, <code class="bg-slate-900 px-1 rounded text-amber-200">useMemo</code>, or <code class="bg-slate-900 px-1 rounded text-amber-200">useCallback</code>.</p>
                 </div>
                 <div>
                     <p class="font-medium text-slate-200">Q: What strategies do you use for optimizing initial load time?</p>
-                    <p class="text-slate-400 text-sm mt-1"><span class="text-emerald-400 font-semibold">Answer:</span> Implementing code splitting with <code class="bg-slate-900 px-1 rounded text-amber-200">React.lazy</code>, using WebP images, and ensuring Tailwind purges unused CSS[span_9](start_span)[span_9](end_span).</p>
+                    <p class="text-slate-400 text-sm mt-1"><span class="text-emerald-400 font-semibold">Answer:</span> Implementing code splitting with <code class="bg-slate-900 px-1 rounded text-amber-200">React.lazy</code>, using WebP images, and ensuring Tailwind purges unused CSS.</p>
                 </div>
             </div>
 
@@ -102,7 +102,7 @@
                 
                 <div>
                     <p class="font-medium text-slate-200">Q: Why is semantic HTML important, and how do you test for accessibility?</p>
-                    <p class="text-slate-400 text-sm mt-1"><span class="text-emerald-400 font-semibold">Answer:</span> Semantic elements like <code class="bg-slate-900 px-1 rounded text-amber-200">&lt;button&gt;</code> ensure screen readers parse structure properly. Test using Lighthouse or axe-core[span_10](start_span)[span_10](end_span).</p>
+                    <p class="text-slate-400 text-sm mt-1"><span class="text-emerald-400 font-semibold">Answer:</span> Semantic elements like <code class="bg-slate-900 px-1 rounded text-amber-200">&lt;button&gt;</code> ensure screen readers parse structure properly. Test using Lighthouse or axe-core.</p>
                 </div>
             </div>
 
@@ -112,7 +112,7 @@
                 
                 <div>
                     <p class="font-medium text-slate-200">Q: Tell me about a complex web application you've built from scratch.</p>
-                    <p class="text-slate-400 text-sm mt-1"><span class="text-emerald-400 font-semibold">Answer Strategy:</span> Discuss custom front-end architecture, user workflows, and state management used in client apps at Prime Solutions[span_11](start_span)[span_11](end_span).</p>
+                    <p class="text-slate-400 text-sm mt-1"><span class="text-emerald-400 font-semibold">Answer Strategy:</span> Discuss custom front-end architecture, user workflows, and state management used in client apps at Prime Solutions.</p>
                 </div>
             </div>
         </section>
@@ -120,7 +120,7 @@
         <!-- SECTION 2: 25-MINUTE CODING EXERCISE PREP -->
         <section id="coding-section" class="space-y-6 pt-4 scroll-mt-6">
             <h2 class="text-2xl font-bold text-blue-400 border-l-4 border-blue-400 pl-3">Part 2: 25-Minute Coding Exercise Patterns</h2>
-            <p class="text-slate-400 mb-4">Core templates for quick implementation during the live coding phase[span_12](start_span)[span_12](end_span). Use the copy buttons to instantly copy code blocks.</p>
+            <p class="text-slate-400 mb-4">Core templates for quick implementation during the live coding phase. Use the copy buttons to instantly copy code blocks.</p>
 
             <!-- Coding Snippet 1 -->
             <div class="bg-slate-800 p-5 rounded-xl border border-slate-700 space-y-3">
@@ -227,7 +227,7 @@ export default function ContactForm() {
 
         <!-- Footer -->
         <footer class="text-center text-xs text-slate-500 pt-6 border-t border-slate-800 pb-10">
-            Good Luck! Focus on writing clean code and explaining your thought process out loud[span_13](start_span)[span_13](end_span).
+            Good Luck! Focus on writing clean code and explaining your thought process out loud.
         </footer>
 
     </div>
