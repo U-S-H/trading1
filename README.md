@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>micro1 Senior Frontend Interview Prep</title>
+    <title>micro1 AI Interview Master Sheet</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-slate-900 text-slate-100 min-h-screen p-4 md:p-8 font-sans">
@@ -36,7 +36,7 @@
             </nav>
         </header>
 
-        <!-- SECTION 1: THEORY & Q&A (Based on Image Topics) -->
+        <!-- SECTION 1: THEORY & Q&A -->
         <section class="space-y-6">
             <h2 class="text-2xl font-bold text-emerald-400 border-l-4 border-emerald-400 pl-3">Part 1: Interview Q&A (Verbal/Typing)</h2>
 
@@ -46,15 +46,15 @@
                 
                 <div class="border-b border-slate-700 pb-3">
                     <p class="font-medium text-slate-200">Q: Can you explain the difference between let, const, and var in JavaScript?</p>
-                    <p class="text-slate-400 text-sm mt-1"><span class="text-emerald-400 font-semibold">Answer:</span> `var` is function-scoped and hoisted with an undefined value. `let` and `const` are block-scoped. `let` allows reassignment, while `const` prevents reassignment of the variable reference[span_1](start_span)[span_1](end_span).</p>
+                    <p class="text-slate-400 text-sm mt-1"><span class="text-emerald-400 font-semibold">Answer:</span> <code class="bg-slate-900 px-1 rounded text-amber-200">var</code> is function-scoped and hoisted with an undefined value. <code class="bg-slate-900 px-1 rounded text-amber-200">let</code> and <code class="bg-slate-900 px-1 rounded text-amber-200">const</code> are block-scoped. <code class="bg-slate-900 px-1 rounded text-amber-200">let</code> allows reassignment, while <code class="bg-slate-900 px-1 rounded text-amber-200">const</code> prevents reassignment[span_2](start_span)[span_2](end_span).</p>
                 </div>
                 <div class="border-b border-slate-700 pb-3">
                     <p class="font-medium text-slate-200">Q: How does the useEffect hook handle component lifecycles?</p>
-                    <p class="text-slate-400 text-sm mt-1"><span class="text-emerald-400 font-semibold">Answer:</span> It acts as `componentDidMount`, `componentDidUpdate`, and `componentWillUnmount` combined. The dependency array dictates when it runs, and the return function acts as the cleanup mechanism[span_2](start_span)[span_2](end_span).</p>
+                    <p class="text-slate-400 text-sm mt-1"><span class="text-emerald-400 font-semibold">Answer:</span> It acts as <code class="bg-slate-900 px-1 rounded text-amber-200">componentDidMount</code>, <code class="bg-slate-900 px-1 rounded text-amber-200">componentDidUpdate</code>, and <code class="bg-slate-900 px-1 rounded text-amber-200">componentWillUnmount</code> combined. The dependency array dictates when it runs[span_3](start_span)[span_3](end_span).</p>
                 </div>
                 <div>
                     <p class="font-medium text-slate-200">Q: What is Prop Drilling and how do you avoid it?</p>
-                    <p class="text-slate-400 text-sm mt-1"><span class="text-emerald-400 font-semibold">Answer:</span> Prop drilling is passing data through multiple nested components that don't need it. I avoid it by using React Context API or state management libraries like Redux or Zustand[span_3](start_span)[span_3](end_span).</p>
+                    <p class="text-slate-400 text-sm mt-1"><span class="text-emerald-400 font-semibold">Answer:</span> Prop drilling is passing data through multiple nested components. I avoid it by using React Context API or state management like Zustand or Redux[span_4](start_span)[span_4](end_span).</p>
                 </div>
             </div>
 
@@ -64,11 +64,11 @@
                 
                 <div class="border-b border-slate-700 pb-3">
                     <p class="font-medium text-slate-200">Q: How does Tailwind handle responsive design differently than traditional CSS?</p>
-                    <p class="text-slate-400 text-sm mt-1"><span class="text-emerald-400 font-semibold">Answer:</span> Tailwind uses a mobile-first approach with utility variants like `sm:`, `md:`, and `lg:`. Instead of writing separate media queries, you apply these prefixes directly to classes in the HTML[span_4](start_span)[span_4](end_span).</p>
+                    <p class="text-slate-400 text-sm mt-1"><span class="text-emerald-400 font-semibold">Answer:</span> Tailwind uses a mobile-first approach with utility variants like <code class="bg-slate-900 px-1 rounded text-amber-200">sm:</code>, <code class="bg-slate-900 px-1 rounded text-amber-200">md:</code>, and <code class="bg-slate-900 px-1 rounded text-amber-200">lg:</code> directly applied in markup[span_5](start_span)[span_5](end_span).</p>
                 </div>
                 <div>
                     <p class="font-medium text-slate-200">Q: How would you build a reusable button component using Tailwind?</p>
-                    <p class="text-slate-400 text-sm mt-1"><span class="text-emerald-400 font-semibold">Answer:</span> I would create a React component that accepts props for variants (primary, secondary) and conditionally joins Tailwind classes using a utility like `clsx` or `tailwind-merge` to prevent class conflicts[span_5](start_span)[span_5](end_span).</p>
+                    <p class="text-slate-400 text-sm mt-1"><span class="text-emerald-400 font-semibold">Answer:</span> Create a React component accepting variant props and joining classes dynamically using utilities like <code class="bg-slate-900 px-1 rounded text-amber-200">clsx</code> or <code class="bg-slate-900 px-1 rounded text-amber-200">tailwind-merge</code>[span_6](start_span)[span_6](end_span).</p>
                 </div>
             </div>
 
@@ -78,7 +78,7 @@
                 
                 <div>
                     <p class="font-medium text-slate-200">Q: A designer gives you a Figma file with a specific design system. How do you implement it in Tailwind?</p>
-                    <p class="text-slate-400 text-sm mt-1"><span class="text-emerald-400 font-semibold">Answer:</span> I extract the exact colors, typography, and spacing scales from Figma and configure them in the `tailwind.config.js` file. This extends Tailwind's default theme to match the designer's tokens exactly, ensuring pixel-perfect consistency across the app[span_6](start_span)[span_6](end_span).</p>
+                    <p class="text-slate-400 text-sm mt-1"><span class="text-emerald-400 font-semibold">Answer:</span> Extract exact tokens (colors, typography, spacing) from Figma and configure them inside <code class="bg-slate-900 px-1 rounded text-amber-200">tailwind.config.js</code> to extend the theme[span_7](start_span)[span_7](end_span).</p>
                 </div>
             </div>
 
@@ -88,11 +88,11 @@
                 
                 <div class="border-b border-slate-700 pb-3">
                     <p class="font-medium text-slate-200">Q: How do you identify and fix performance bottlenecks in a React app?</p>
-                    <p class="text-slate-400 text-sm mt-1"><span class="text-emerald-400 font-semibold">Answer:</span> I use React DevTools Profiler to find components that re-render too often. I fix them by wrapping components in `React.memo`, moving state down the tree, or using `useMemo` and `useCallback` for expensive operations[span_7](start_span)[span_7](end_span).</p>
+                    <p class="text-slate-400 text-sm mt-1"><span class="text-emerald-400 font-semibold">Answer:</span> Use React DevTools Profiler to find unnecessary re-renders, then optimize using <code class="bg-slate-900 px-1 rounded text-amber-200">React.memo</code>, <code class="bg-slate-900 px-1 rounded text-amber-200">useMemo</code>, or <code class="bg-slate-900 px-1 rounded text-amber-200">useCallback</code>[span_8](start_span)[span_8](end_span).</p>
                 </div>
                 <div>
                     <p class="font-medium text-slate-200">Q: What strategies do you use for optimizing initial load time?</p>
-                    <p class="text-slate-400 text-sm mt-1"><span class="text-emerald-400 font-semibold">Answer:</span> Implementing code splitting with `React.lazy`, compressing images (using WebP format), lazy-loading off-screen images, and ensuring Tailwind is configured to purge unused CSS for a smaller bundle size[span_8](start_span)[span_8](end_span).</p>
+                    <p class="text-slate-400 text-sm mt-1"><span class="text-emerald-400 font-semibold">Answer:</span> Implementing code splitting with <code class="bg-slate-900 px-1 rounded text-amber-200">React.lazy</code>, using WebP images, and ensuring Tailwind purges unused CSS[span_9](start_span)[span_9](end_span).</p>
                 </div>
             </div>
 
@@ -102,17 +102,17 @@
                 
                 <div>
                     <p class="font-medium text-slate-200">Q: Why is semantic HTML important, and how do you test for accessibility?</p>
-                    <p class="text-slate-400 text-sm mt-1"><span class="text-emerald-400 font-semibold">Answer:</span> Semantic HTML (like using `&lt;button&gt;` instead of a clickable `&lt;div&gt;`) ensures screen readers understand the page structure. I test using automated tools like Lighthouse or axe-core, check color contrast ratios, and verify that all interactive elements are reachable via keyboard (Tab navigation)[span_9](start_span)[span_9](end_span).</p>
+                    <p class="text-slate-400 text-sm mt-1"><span class="text-emerald-400 font-semibold">Answer:</span> Semantic elements like <code class="bg-slate-900 px-1 rounded text-amber-200">&lt;button&gt;</code> ensure screen readers parse structure properly. Test using Lighthouse or axe-core[span_10](start_span)[span_10](end_span).</p>
                 </div>
             </div>
 
             <!-- Topic 6 -->
             <div class="bg-slate-800 p-5 rounded-xl border border-slate-700 space-y-4 shadow-lg">
-                <h3 class="text-xl font-semibold text-amber-300">6. Custom Questions (Experience Based)</h3>
+                <h3 class="text-xl font-semibold text-amber-300">6. Custom Questions Defined for the Job</h3>
                 
                 <div>
                     <p class="font-medium text-slate-200">Q: Tell me about a complex web application you've built from scratch.</p>
-                    <p class="text-slate-400 text-sm mt-1"><span class="text-emerald-400 font-semibold">Answer Strategy:</span> (Be ready to talk about a recent project. Mention how you handled custom front-end architecture, user authentication, or integrating AI APIs for client projects at Prime Solutions, and the tech stack you chose like Firebase, HTML, CSS, JS)[span_10](start_span)[span_10](end_span).</p>
+                    <p class="text-slate-400 text-sm mt-1"><span class="text-emerald-400 font-semibold">Answer Strategy:</span> Discuss custom front-end architecture, user workflows, and state management used in client apps at Prime Solutions[span_11](start_span)[span_11](end_span).</p>
                 </div>
             </div>
         </section>
@@ -120,7 +120,7 @@
         <!-- SECTION 2: 25-MINUTE CODING EXERCISE PREP -->
         <section id="coding-section" class="space-y-6 pt-4 scroll-mt-6">
             <h2 class="text-2xl font-bold text-blue-400 border-l-4 border-blue-400 pl-3">Part 2: 25-Minute Coding Exercise Patterns</h2>
-            <p class="text-slate-400 mb-4">You will likely be asked to build a functional component, fetch data, and style it with Tailwind. Here are the core patterns to memorize[span_11](start_span)[span_11](end_span). Use the copy buttons to instantly copy code blocks.</p>
+            <p class="text-slate-400 mb-4">Core templates for quick implementation during the live coding phase[span_12](start_span)[span_12](end_span). Use the copy buttons to instantly copy code blocks.</p>
 
             <!-- Coding Snippet 1 -->
             <div class="bg-slate-800 p-5 rounded-xl border border-slate-700 space-y-3">
@@ -188,7 +188,6 @@ export default function ContactForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Submitted:', formData);
-    // Add logic here
   };
 
   return (
@@ -228,14 +227,13 @@ export default function ContactForm() {
 
         <!-- Footer -->
         <footer class="text-center text-xs text-slate-500 pt-6 border-t border-slate-800 pb-10">
-            Good Luck! Focus on writing clean code and explaining your thought process out loud[span_12](start_span)[span_12](end_span).
+            Good Luck! Focus on writing clean code and explaining your thought process out loud[span_13](start_span)[span_13](end_span).
         </footer>
 
     </div>
 
     <!-- Scripts for Timer and Copy Functionality -->
     <script>
-        // Copy Code Functionality
         function copyCode(button) {
             const preElement = button.closest('div.space-y-3').querySelector('code.code-block');
             const codeText = preElement.innerText;
@@ -253,9 +251,8 @@ export default function ContactForm() {
             });
         }
 
-        // Timer Functionality
         let timerInterval;
-        let timeLeft = 55 * 60; // 55 minutes in seconds
+        let timeLeft = 55 * 60;
         let timerRunning = false;
 
         function toggleTimer() {
