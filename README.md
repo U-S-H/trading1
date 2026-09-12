@@ -304,13 +304,43 @@ export default function DebouncedSearch() {
             document.getElementById('questionTimer').innerText = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
         }, 1000);
 
-        // Expanded Rich Q&A Database
+        // Expanded & Detailed Rich Q&A Database
         let questionsBank = [
-            { id: 1, topic: "React + JS", q: "Difference between let, const, and var?", a: "var is function-scoped and hoisted. let and const are block-scoped.", hint: "Mention block scope and hoisting." },
-            { id: 2, topic: "Tailwind CSS", q: "How does Tailwind handle responsive design?", a: "Uses a mobile-first philosophy with prefixes like sm: and md:.", hint: "Mention mobile-first utility prefixes." },
-            { id: 3, topic: "React Hooks", q: "How does useEffect handle component lifecycles?", a: "Dependency array maps to mount/update phases.", hint: "Discuss dependency array behavior." },
-            { id: 4, topic: "Performance", q: "What is code splitting in React?", a: "Loading parts of the app lazily using React.lazy and Suspense to reduce initial bundle size.", hint: "Mention React.lazy and Suspense." },
-            { id: 5, topic: "State Management", q: "When should you use Context API vs Redux?", a: "Context is great for low-frequency global states (themes, auth). Redux/Zustand is better for complex, high-frequency updates.", hint: "Compare frequency of updates and boilerplate complexity." }
+            { 
+                id: 1, 
+                topic: "React + JS", 
+                q: "Difference between let, const, and var?", 
+                a: "Scope: var is function-scoped, while let and const are block-scoped. Hoisting: var hoists with undefined; let and const hoist into Temporal Dead Zone (TDZ) and throw ReferenceError if accessed before declaration. Re-assignment: var allows re-declaration and re-assignment; let allows re-assignment but not re-declaration; const is constant with fixed reference (though nested object properties can mutate).", 
+                hint: "Mention block scope, hoisting/TDZ, and re-assignment rules." 
+            },
+            { 
+                id: 2, 
+                topic: "Tailwind CSS", 
+                q: "How does Tailwind handle responsive design?", 
+                a: "Tailwind follows a mobile-first philosophy. It uses predefined screen size prefixes like sm:, md:, lg:, xl:, and 2xl: to apply utility classes dynamically as screen widths increase.", 
+                hint: "Mention mobile-first utility prefixes like md: and lg:." 
+            },
+            { 
+                id: 3, 
+                topic: "React Hooks", 
+                q: "How does useEffect handle component lifecycles?", 
+                a: "An empty dependency array [] runs on mount once. Passing specific variables triggers execution on mount and whenever those variables update. Returning a cleanup function from the effect handles unmounting or prior cleanup.", 
+                hint: "Discuss dependency array behavior and cleanup functions." 
+            },
+            { 
+                id: 4, 
+                topic: "Performance", 
+                q: "What is code splitting in React?", 
+                a: "Code splitting divides large JavaScript bundles into smaller chunks loaded lazily on demand using React.lazy() and Suspense, drastically improving initial page load speed.", 
+                hint: "Mention React.lazy and Suspense." 
+            },
+            { 
+                id: 5, 
+                topic: "State Management", 
+                q: "When should you use Context API vs Redux?", 
+                a: "Context API is ideal for low-frequency global states like themes, user authentication, or localization. Redux or Zustand is better suited for complex, high-frequency global state updates across large applications.", 
+                hint: "Compare update frequency and application scale." 
+            }
         ];
 
         let mockQuestions = [...questionsBank];
@@ -402,21 +432,21 @@ export default function DebouncedSearch() {
                 `).join('');
             } else {
                 container.innerHTML = filtered.map(item => `
-                    <div class="h-56 perspective-1000 cursor-pointer group" onclick="this.querySelector('.transform-style-3d').classList.toggle('rotate-y-180')">
+                    <div class="h-64 perspective-1000 cursor-pointer group" onclick="this.querySelector('.transform-style-3d').classList.toggle('rotate-y-180')">
                         <div class="relative w-full h-full duration-500 transform-style-3d bg-white dark:bg-slate-900 border border-indigo-100 dark:border-slate-800 rounded-2xl p-6 shadow-md flex flex-col justify-between">
                             <!-- Front Side -->
-                            <div class="absolute inset-0 p-6 backface-hidden flex flex-col justify-between">
+                            <div class="absolute inset-0 p-6 backface-hidden flex flex-col justify-between overflow-y-auto">
                                 <div class="flex items-center justify-between">
                                     <span class="text-xs text-indigo-600 dark:text-indigo-400 font-mono font-bold">${item.topic}</span>
                                     <span class="text-xs text-slate-400">🔄 Click to Flip</span>
                                 </div>
-                                <h3 class="font-bold text-indigo-950 dark:text-white text-base md:text-lg">${item.q}</h3>
+                                <h3 class="font-bold text-indigo-950 dark:text-white text-base md:text-lg my-auto">${item.q}</h3>
                                 <p class="text-xs text-slate-400 text-right">Card #${item.id}</p>
                             </div>
                             <!-- Back Side -->
-                            <div class="absolute inset-0 p-6 backface-hidden rotate-y-180 bg-indigo-900 dark:bg-slate-800 border border-indigo-700 dark:border-slate-700 text-white rounded-2xl flex flex-col justify-between">
-                                <span class="text-xs text-indigo-300 font-mono">Answer Key</span>
-                                <p class="text-xs md:text-sm text-indigo-100">${item.a}</p>
+                            <div class="absolute inset-0 p-6 backface-hidden rotate-y-180 bg-indigo-900 dark:bg-slate-800 border border-indigo-700 dark:border-slate-700 text-white rounded-2xl flex flex-col justify-between overflow-y-auto">
+                                <span class="text-xs text-indigo-300 font-mono font-bold">Detailed Answer Key</span>
+                                <p class="text-xs md:text-sm text-indigo-100 my-auto">${item.a}</p>
                                 <p class="text-xs text-indigo-300 text-right">Flip back ↩</p>
                             </div>
                         </div>
