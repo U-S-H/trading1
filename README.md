@@ -2,577 +2,291 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prime Solutions - Digital Agency</title>
-    <style>
-        :root {
-            --bg-color: #f9fafb;
-            --text-color: #1f2937;
-            --card-bg: #ffffff;
-            --header-bg: rgba(255, 255, 255, 0.95);
-            --border-color: #e5e7eb;
-            --muted-color: #6b7280;
-        }
-
-        [data-theme="dark"] {
-            --bg-color: #0f172a;
-            --text-color: #f8fafc;
-            --card-bg: #1e293b;
-            --header-bg: rgba(15, 23, 42, 0.95);
-            --border-color: #334155;
-            --muted-color: #94a3b8;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            scroll-behavior: smooth;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            overflow-x: hidden;
-        }
-
-        /* Header / Navbar */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 50px;
-            background-color: var(--header-bg);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #2563eb;
-            text-decoration: none;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 20px;
-            align-items: center;
-        }
-
-        nav ul li a {
-            text-decoration: none;
-            color: var(--muted-color);
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        nav ul li a:hover {
-            color: #2563eb;
-        }
-
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .theme-toggle {
-            background: none;
-            border: 1px solid var(--border-color);
-            color: var(--text-color);
-            padding: 8px 12px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 14px;
-        }
-
-        .cta-btn {
-            background-color: #2563eb;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: background-color 0.3s;
-        }
-
-        .cta-btn:hover {
-            background-color: #1d4ed8;
-        }
-
-        /* Hero Section */
-        .hero {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 140px 20px;
-            background: linear-gradient(rgba(30, 58, 138, 0.8), rgba(30, 58, 138, 0.9)), url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
-            color: white;
-        }
-
-        .hero h1 {
-            font-size: 52px;
-            margin-bottom: 20px;
-        }
-
-        .hero p {
-            font-size: 18px;
-            max-width: 650px;
-            margin-bottom: 35px;
-            line-height: 1.6;
-            color: #e2e8f0;
-        }
-
-        .hero-btn {
-            background-color: #ffffff;
-            color: #2563eb;
-            padding: 14px 35px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: bold;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-
-        /* Stats Section */
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            max-width: 1000px;
-            margin: -50px auto 0 auto;
-            position: relative;
-            z-index: 10;
-            padding: 0 20px;
-        }
-
-        .stat-card {
-            background: var(--card-bg);
-            padding: 25px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.06);
-            border: 1px solid var(--border-color);
-        }
-
-        .stat-card h3 {
-            font-size: 32px;
-            color: #2563eb;
-            margin-bottom: 5px;
-        }
-
-        .stat-card p {
-            color: var(--muted-color);
-            font-size: 14px;
-        }
-
-        /* Content Sections */
-        .services, .portfolio, .testimonials, .contact {
-            padding: 90px 50px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 36px;
-            color: #2563eb;
-            margin-bottom: 60px;
-        }
-
-        .services-grid, .portfolio-grid, .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 35px;
-        }
-
-        .service-card, .portfolio-card, .testimonial-card {
-            background: var(--card-bg);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.04);
-            border: 1px solid var(--border-color);
-        }
-
-        .service-card img, .portfolio-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .card-content {
-            padding: 25px;
-        }
-
-        .card-content h3 {
-            font-size: 22px;
-            color: #2563eb;
-            margin-bottom: 12px;
-        }
-
-        .card-content p {
-            color: var(--muted-color);
-            line-height: 1.6;
-            font-size: 15px;
-            margin-bottom: 15px;
-        }
-
-        .project-link {
-            color: #2563eb;
-            font-weight: 600;
-            text-decoration: none;
-        }
-
-        /* Testimonials */
-        .testimonial-card {
-            padding: 30px;
-            text-align: center;
-        }
-
-        .testimonial-card p {
-            font-style: italic;
-            color: var(--muted-color);
-            margin-bottom: 15px;
-        }
-
-        .testimonial-card h4 {
-            color: #2563eb;
-            font-size: 16px;
-        }
-
-        /* Contact Section */
-        .contact-wrapper {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .contact-info {
-            background: var(--card-bg);
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            border: 1px solid var(--border-color);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .contact-info h3 {
-            color: #2563eb;
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-
-        .contact-info p {
-            color: var(--muted-color);
-            font-size: 16px;
-            line-height: 1.5;
-        }
-
-        .contact-info a {
-            color: #2563eb;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .contact-container {
-            background: var(--card-bg);
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            border: 1px solid var(--border-color);
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: var(--text-color);
-        }
-
-        .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid var(--border-color);
-            background: var(--bg-color);
-            color: var(--text-color);
-            border-radius: 8px;
-            font-size: 15px;
-        }
-
-        .submit-btn {
-            background-color: #2563eb;
-            color: white;
-            border: none;
-            padding: 14px 30px;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 8px;
-            cursor: pointer;
-            width: 100%;
-        }
-
-        /* AI Chatbot Floating Widget */
-        .chatbot-container {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1001;
-        }
-
-        .chatbot-btn {
-            background-color: #2563eb;
-            color: white;
-            border: none;
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            font-size: 22px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
-        }
-
-        .chatbot-box {
-            display: none;
-            position: absolute;
-            bottom: 70px;
-            right: 0;
-            width: 300px;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            overflow: hidden;
-        }
-
-        .chatbot-header {
-            background: #2563eb;
-            color: white;
-            padding: 15px;
-            font-weight: bold;
-        }
-
-        .chatbot-body {
-            padding: 15px;
-            height: 200px;
-            font-size: 14px;
-            color: var(--muted-color);
-        }
-
-        /* Footer */
-        footer {
-            background-color: #1f2937;
-            color: #9ca3af;
-            text-align: center;
-            padding: 40px 20px;
-            margin-top: 80px;
-        }
-
-        footer a {
-            color: #60a5fa;
-            text-decoration: none;
-        }
-
-        @media (max-width: 768px) {
-            header {
-                padding: 15px 20px;
-                flex-direction: column;
-                gap: 15px;
-            }
-            nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            .hero h1 {
-                font-size: 36px;
-            }
-            .services, .portfolio, .testimonials, .contact {
-                padding: 50px 20px;
-            }
-        }
-    </style>
+    <title>micro1 Senior Frontend Interview Prep</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-slate-900 text-slate-100 min-h-screen p-4 md:p-8 font-sans">
 
-    <!-- Header / Navbar -->
-    <header>
-        <a href="https://web-hub-code.github.io/primesolutions/" class="logo" target="_blank">Prime Solutions</a>
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#testimonials">Testimonials</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-        <div class="nav-actions">
-            <button class="theme-toggle" onclick="toggleTheme()">🌙 Mode</button>
-            <a href="#contact" class="cta-btn">Get Started</a>
-        </div>
-    </header>
+    <div class="max-w-5xl mx-auto space-y-10">
+        
+        <!-- Header -->
+        <header class="border-b border-slate-700 pb-6 text-center space-y-4">
+            <div>
+                <h1 class="text-3xl md:text-4xl font-extrabold text-blue-400">micro1 AI Interview Master Sheet</h1>
+                <p class="text-slate-400 mt-2 text-lg">~55 Min Q&A + 25 Min Live Coding Preparation</p>
+            </div>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <h1>Welcome to Prime Solutions</h1>
-        <p>We provide the best digital solutions to help your business grow and succeed in the modern competitive world.</p>
-        <a href="#services" class="hero-btn">Explore Services</a>
-    </section>
+            <!-- Interview Timer Widget -->
+            <div class="inline-flex items-center gap-3 bg-slate-800 border border-slate-700 px-4 py-2 rounded-xl text-sm shadow-md">
+                <span class="text-emerald-400 font-semibold flex items-center gap-1.5">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span> Timer:
+                </span>
+                <span id="interviewTimer" class="font-mono text-amber-300 font-bold tracking-wider">55:00</span>
+                <button onclick="toggleTimer()" id="timerBtn" class="text-xs bg-slate-700 hover:bg-slate-600 px-2.5 py-1 rounded text-slate-200 transition">Start</button>
+            </div>
 
-    <!-- Stats Counter Section -->
-    <div class="stats">
-        <div class="stat-card">
-            <h3>50+</h3>
-            <p>Projects Completed</p>
-        </div>
-        <div class="stat-card">
-            <h3>100%</h3>
-            <p>Client Satisfaction</p>
-        </div>
-        <div class="stat-card">
-            <h3>24/7</h3>
-            <p>Support & Maintenance</p>
-        </div>
+            <!-- Quick-Jump Navigation Bar -->
+            <nav class="flex flex-wrap justify-center gap-2 pt-2">
+                <a href="#react-section" class="text-xs bg-slate-800 hover:bg-slate-700 text-blue-300 border border-slate-700 px-3 py-1.5 rounded-lg transition">React & JS</a>
+                <a href="#tailwind-section" class="text-xs bg-slate-800 hover:bg-slate-700 text-blue-300 border border-slate-700 px-3 py-1.5 rounded-lg transition">Tailwind CSS</a>
+                <a href="#figma-section" class="text-xs bg-slate-800 hover:bg-slate-700 text-blue-300 border border-slate-700 px-3 py-1.5 rounded-lg transition">Figma UI</a>
+                <a href="#perf-section" class="text-xs bg-slate-800 hover:bg-slate-700 text-blue-300 border border-slate-700 px-3 py-1.5 rounded-lg transition">Performance</a>
+                <a href="#a11y-section" class="text-xs bg-slate-800 hover:bg-slate-700 text-blue-300 border border-slate-700 px-3 py-1.5 rounded-lg transition">A11y</a>
+                <a href="#coding-section" class="text-xs bg-slate-800 hover:bg-slate-700 text-emerald-300 border border-slate-700 px-3 py-1.5 rounded-lg transition">Live Coding Patterns</a>
+            </nav>
+        </header>
+
+        <!-- SECTION 1: THEORY & Q&A (Based on Image Topics) -->
+        <section class="space-y-6">
+            <h2 class="text-2xl font-bold text-emerald-400 border-l-4 border-emerald-400 pl-3">Part 1: Interview Q&A (Verbal/Typing)</h2>
+
+            <!-- Topic 1 -->
+            <div id="react-section" class="bg-slate-800 p-5 rounded-xl border border-slate-700 space-y-4 shadow-lg scroll-mt-6">
+                <h3 class="text-xl font-semibold text-amber-300">1. React + JavaScript Frontend Engineering</h3>
+                
+                <div class="border-b border-slate-700 pb-3">
+                    <p class="font-medium text-slate-200">Q: Can you explain the difference between let, const, and var in JavaScript?</p>
+                    <p class="text-slate-400 text-sm mt-1"><span class="text-emerald-400 font-semibold">Answer:</span> `var` is function-scoped and hoisted with an undefined value. `let` and `const` are block-scoped. `let` allows reassignment, while `const` prevents reassignment of the variable reference[span_1](start_span)[span_1](end_span).</p>
+                </div>
+                <div class="border-b border-slate-700 pb-3">
+                    <p class="font-medium text-slate-200">Q: How does the useEffect hook handle component lifecycles?</p>
+                    <p class="text-slate-400 text-sm mt-1"><span class="text-emerald-400 font-semibold">Answer:</span> It acts as `componentDidMount`, `componentDidUpdate`, and `componentWillUnmount` combined. The dependency array dictates when it runs, and the return function acts as the cleanup mechanism[span_2](start_span)[span_2](end_span).</p>
+                </div>
+                <div>
+                    <p class="font-medium text-slate-200">Q: What is Prop Drilling and how do you avoid it?</p>
+                    <p class="text-slate-400 text-sm mt-1"><span class="text-emerald-400 font-semibold">Answer:</span> Prop drilling is passing data through multiple nested components that don't need it. I avoid it by using React Context API or state management libraries like Redux or Zustand[span_3](start_span)[span_3](end_span).</p>
+                </div>
+            </div>
+
+            <!-- Topic 2 -->
+            <div id="tailwind-section" class="bg-slate-800 p-5 rounded-xl border border-slate-700 space-y-4 shadow-lg scroll-mt-6">
+                <h3 class="text-xl font-semibold text-amber-300">2. Tailwind CSS + Responsive UI / Design Systems</h3>
+                
+                <div class="border-b border-slate-700 pb-3">
+                    <p class="font-medium text-slate-200">Q: How does Tailwind handle responsive design differently than traditional CSS?</p>
+                    <p class="text-slate-400 text-sm mt-1"><span class="text-emerald-400 font-semibold">Answer:</span> Tailwind uses a mobile-first approach with utility variants like `sm:`, `md:`, and `lg:`. Instead of writing separate media queries, you apply these prefixes directly to classes in the HTML[span_4](start_span)[span_4](end_span).</p>
+                </div>
+                <div>
+                    <p class="font-medium text-slate-200">Q: How would you build a reusable button component using Tailwind?</p>
+                    <p class="text-slate-400 text-sm mt-1"><span class="text-emerald-400 font-semibold">Answer:</span> I would create a React component that accepts props for variants (primary, secondary) and conditionally joins Tailwind classes using a utility like `clsx` or `tailwind-merge` to prevent class conflicts[span_5](start_span)[span_5](end_span).</p>
+                </div>
+            </div>
+
+            <!-- Topic 3 -->
+            <div id="figma-section" class="bg-slate-800 p-5 rounded-xl border border-slate-700 space-y-4 shadow-lg scroll-mt-6">
+                <h3 class="text-xl font-semibold text-amber-300">3. Pixel-perfect UI Implementation & Designer Collaboration</h3>
+                
+                <div>
+                    <p class="font-medium text-slate-200">Q: A designer gives you a Figma file with a specific design system. How do you implement it in Tailwind?</p>
+                    <p class="text-slate-400 text-sm mt-1"><span class="text-emerald-400 font-semibold">Answer:</span> I extract the exact colors, typography, and spacing scales from Figma and configure them in the `tailwind.config.js` file. This extends Tailwind's default theme to match the designer's tokens exactly, ensuring pixel-perfect consistency across the app[span_6](start_span)[span_6](end_span).</p>
+                </div>
+            </div>
+
+            <!-- Topic 4 -->
+            <div id="perf-section" class="bg-slate-800 p-5 rounded-xl border border-slate-700 space-y-4 shadow-lg scroll-mt-6">
+                <h3 class="text-xl font-semibold text-amber-300">4. Frontend Performance Optimization</h3>
+                
+                <div class="border-b border-slate-700 pb-3">
+                    <p class="font-medium text-slate-200">Q: How do you identify and fix performance bottlenecks in a React app?</p>
+                    <p class="text-slate-400 text-sm mt-1"><span class="text-emerald-400 font-semibold">Answer:</span> I use React DevTools Profiler to find components that re-render too often. I fix them by wrapping components in `React.memo`, moving state down the tree, or using `useMemo` and `useCallback` for expensive operations[span_7](start_span)[span_7](end_span).</p>
+                </div>
+                <div>
+                    <p class="font-medium text-slate-200">Q: What strategies do you use for optimizing initial load time?</p>
+                    <p class="text-slate-400 text-sm mt-1"><span class="text-emerald-400 font-semibold">Answer:</span> Implementing code splitting with `React.lazy`, compressing images (using WebP format), lazy-loading off-screen images, and ensuring Tailwind is configured to purge unused CSS for a smaller bundle size[span_8](start_span)[span_8](end_span).</p>
+                </div>
+            </div>
+
+            <!-- Topic 5 -->
+            <div id="a11y-section" class="bg-slate-800 p-5 rounded-xl border border-slate-700 space-y-4 shadow-lg scroll-mt-6">
+                <h3 class="text-xl font-semibold text-amber-300">5. Accessibility (a11y) & Usability Standards</h3>
+                
+                <div>
+                    <p class="font-medium text-slate-200">Q: Why is semantic HTML important, and how do you test for accessibility?</p>
+                    <p class="text-slate-400 text-sm mt-1"><span class="text-emerald-400 font-semibold">Answer:</span> Semantic HTML (like using `&lt;button&gt;` instead of a clickable `&lt;div&gt;`) ensures screen readers understand the page structure. I test using automated tools like Lighthouse or axe-core, check color contrast ratios, and verify that all interactive elements are reachable via keyboard (Tab navigation)[span_9](start_span)[span_9](end_span).</p>
+                </div>
+            </div>
+
+            <!-- Topic 6 -->
+            <div class="bg-slate-800 p-5 rounded-xl border border-slate-700 space-y-4 shadow-lg">
+                <h3 class="text-xl font-semibold text-amber-300">6. Custom Questions (Experience Based)</h3>
+                
+                <div>
+                    <p class="font-medium text-slate-200">Q: Tell me about a complex web application you've built from scratch.</p>
+                    <p class="text-slate-400 text-sm mt-1"><span class="text-emerald-400 font-semibold">Answer Strategy:</span> (Be ready to talk about a recent project. Mention how you handled custom front-end architecture, user authentication, or integrating AI APIs for client projects at Prime Solutions, and the tech stack you chose like Firebase, HTML, CSS, JS)[span_10](start_span)[span_10](end_span).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: 25-MINUTE CODING EXERCISE PREP -->
+        <section id="coding-section" class="space-y-6 pt-4 scroll-mt-6">
+            <h2 class="text-2xl font-bold text-blue-400 border-l-4 border-blue-400 pl-3">Part 2: 25-Minute Coding Exercise Patterns</h2>
+            <p class="text-slate-400 mb-4">You will likely be asked to build a functional component, fetch data, and style it with Tailwind. Here are the core patterns to memorize[span_11](start_span)[span_11](end_span). Use the copy buttons to instantly copy code blocks.</p>
+
+            <!-- Coding Snippet 1 -->
+            <div class="bg-slate-800 p-5 rounded-xl border border-slate-700 space-y-3">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-lg font-semibold text-emerald-300">Pattern 1: Data Fetching Table/List (Crucial)</h3>
+                    <button onclick="copyCode(this)" class="text-xs bg-slate-700 hover:bg-slate-600 text-slate-200 px-3 py-1.5 rounded-lg transition flex items-center gap-1">
+                        📋 Copy Code
+                    </button>
+                </div>
+                <pre class="bg-slate-900 p-4 rounded-lg overflow-x-auto text-xs text-blue-100"><code class="code-block">import { useState, useEffect } from 'react';
+
+export default function DataFetcher() {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('https://jsonplaceholder.typicode.com/posts?_limit=5');
+        if (!response.ok) throw new Error('Network response was not ok');
+        const result = await response.json();
+        setData(result);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
+  if (loading) return &lt;div className="text-center p-4"&gt;Loading...&lt;/div&gt;;
+  if (error) return &lt;div className="text-red-500 p-4"&gt;Error: {error}&lt;/div&gt;;
+
+  return (
+    &lt;div className="max-w-2xl mx-auto p-4"&gt;
+      &lt;h2 className="text-2xl font-bold mb-4"&gt;Latest Posts&lt;/h2&gt;
+      &lt;div className="space-y-4"&gt;
+        {data.map(item => (
+          &lt;div key={item.id} className="p-4 bg-slate-800 rounded-lg shadow-md border border-slate-700"&gt;
+            &lt;h3 className="font-semibold text-lg text-emerald-400"&gt;{item.title}&lt;/h3&gt;
+            &lt;p className="text-slate-300 mt-2"&gt;{item.body}&lt;/p&gt;
+          &lt;/div&gt;
+        ))}
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+            </div>
+
+            <!-- Coding Snippet 2 -->
+            <div class="bg-slate-800 p-5 rounded-xl border border-slate-700 space-y-3">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-lg font-semibold text-emerald-300">Pattern 2: Dynamic Form & State Management</h3>
+                    <button onclick="copyCode(this)" class="text-xs bg-slate-700 hover:bg-slate-600 text-slate-200 px-3 py-1.5 rounded-lg transition flex items-center gap-1">
+                        📋 Copy Code
+                    </button>
+                </div>
+                <pre class="bg-slate-900 p-4 rounded-lg overflow-x-auto text-xs text-blue-100"><code class="code-block">import { useState } from 'react';
+
+export default function ContactForm() {
+  const [formData, setFormData] = useState({ name: '', email: '' });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Submitted:', formData);
+    // Add logic here
+  };
+
+  return (
+    &lt;form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-sm mx-auto p-6 bg-slate-800 rounded-xl"&gt;
+      &lt;div&gt;
+        &lt;label htmlFor="name" className="block text-sm font-medium text-slate-300 mb-1"&gt;Name&lt;/label&gt;
+        &lt;input 
+          id="name"
+          type="text" 
+          className="w-full p-2 rounded bg-slate-900 border border-slate-600 text-white focus:outline-none focus:border-emerald-500"
+          value={formData.name}
+          onChange={(e) => setFormData({...formData, name: e.target.value})}
+          required
+        /&gt;
+      &lt;/div&gt;
+      
+      &lt;div&gt;
+        &lt;label htmlFor="email" className="block text-sm font-medium text-slate-300 mb-1"&gt;Email&lt;/label&gt;
+        &lt;input 
+          id="email"
+          type="email" 
+          className="w-full p-2 rounded bg-slate-900 border border-slate-600 text-white focus:outline-none focus:border-emerald-500"
+          value={formData.email}
+          onChange={(e) => setFormData({...formData, email: e.target.value})}
+          required
+        /&gt;
+      &lt;/div&gt;
+
+      &lt;button type="submit" className="mt-2 bg-emerald-500 hover:bg-emerald-600 text-slate-900 font-bold py-2 px-4 rounded transition-colors"&gt;
+        Submit
+      &lt;/button&gt;
+    &lt;/form&gt;
+  );
+}</code></pre>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center text-xs text-slate-500 pt-6 border-t border-slate-800 pb-10">
+            Good Luck! Focus on writing clean code and explaining your thought process out loud[span_12](start_span)[span_12](end_span).
+        </footer>
+
     </div>
 
-    <!-- Services Section -->
-    <section class="services" id="services">
-        <h2 class="section-title">What We Offer</h2>
-        <div class="services-grid">
-            <div class="service-card">
-                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80" alt="Web Development">
-                <div class="card-content">
-                    <h3>Web Development</h3>
-                    <p>Custom, responsive, and high-performance websites built with modern technologies tailored to your brand.</p>
-                </div>
-            </div>
-            <div class="service-card">
-                <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&w=600&q=80" alt="UI/UX Design">
-                <div class="card-content">
-                    <h3>UI/UX Design</h3>
-                    <p>Engaging user interfaces and seamless experiences designed to convert visitors into loyal customers.</p>
-                </div>
-            </div>
-            <div class="service-card">
-                <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=600&q=80" alt="Digital Solutions">
-                <div class="card-content">
-                    <h3>Digital Solutions</h3>
-                    <p>Scalable software integrations and automated workflows to boost your business efficiency and growth.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Portfolio Section -->
-    <section class="portfolio" id="portfolio">
-        <h2 class="section-title">Our Featured Work</h2>
-        <div class="portfolio-grid">
-            <div class="portfolio-card">
-                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" alt="Vestify Pro">
-                <div class="card-content">
-                    <h3>Vestify Pro</h3>
-                    <p>Investment and earning management platform featuring secure database logic and automated daily returns.</p>
-                    <a href="https://web-hub-code.github.io/primesolutions/" target="_blank" class="project-link">View Project &rarr;</a>
-                </div>
-            </div>
-            <div class="portfolio-card">
-                <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=600&q=80" alt="USHomeImprovements">
-                <div class="card-content">
-                    <h3>USHomeImprovements</h3>
-                    <p>Professional home improvement landing page designed with clean HTML/CSS layouts and responsive elements.</p>
-                    <a href="https://web-hub-code.github.io/primesolutions/" target="_blank" class="project-link">View Project &rarr;</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section class="testimonials" id="testimonials">
-        <h2 class="section-title">Client Testimonials</h2>
-        <div class="testimonial-grid">
-            <div class="testimonial-card">
-                <p>"Prime Solutions delivered an exceptional website for our business ahead of schedule. Highly professional team!"</p>
-                <h4>- Sarah Johnson</h4>
-            </div>
-            <div class="testimonial-card">
-                <p>"Their attention to responsive design and UI/UX completely transformed our online conversion rates."</p>
-                <h4>- Michael Brown</h4>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Form Section -->
-    <section class="contact" id="contact">
-        <h2 class="section-title">Get In Touch</h2>
-        <div class="contact-wrapper">
-            <div class="contact-info">
-                <h3>Contact Info</h3>
-                <p>Feel free to reach out via email or WhatsApp for quick projects and queries.</p>
-                <p><strong>Email:</strong> <a href="mailto:Webhub262@gmail.com">Webhub262@gmail.com</a></p>
-                <p><strong>WhatsApp:</strong> <a href="https://wa.me/923379827882" target="_blank">+92 337 9827882</a></p>
-            </div>
-            <div class="contact-container">
-                <form>
-                    <div class="form-group">
-                        <label for="name">Your Name</label>
-                        <input type="text" id="name" placeholder="Enter your name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Your Email</label>
-                        <input type="email" id="email" placeholder="Enter your email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Your Message</label>
-                        <textarea id="message" rows="5" placeholder="Write your message here..." required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Send Message</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- AI Chatbot Widget -->
-    <div class="chatbot-container">
-        <div class="chatbot-box" id="chatbotBox">
-            <div class="chatbot-header">Prime AI Assistant</div>
-            <div class="chatbot-body">Hello! How can I help you scale your business today?</div>
-        </div>
-        <button class="chatbot-btn" onclick="toggleChat()">💬</button>
-    </div>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 <a href="https://web-hub-code.github.io/primesolutions/" target="_blank">Prime Solutions</a>. All rights reserved.</p>
-    </footer>
-
+    <!-- Scripts for Timer and Copy Functionality -->
     <script>
-        function toggleTheme() {
-            const body = document.body;
-            const currentTheme = body.getAttribute('data-theme');
-            body.setAttribute('data-theme', currentTheme === 'dark' ? 'light' : 'dark');
+        // Copy Code Functionality
+        function copyCode(button) {
+            const preElement = button.closest('div.space-y-3').querySelector('code.code-block');
+            const codeText = preElement.innerText;
+            
+            navigator.clipboard.writeText(codeText).then(() => {
+                const originalText = button.innerHTML;
+                button.innerHTML = "✅ Copied!";
+                button.classList.add("bg-emerald-600", "text-white");
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.classList.remove("bg-emerald-600", "text-white");
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
         }
 
-        function toggleChat() {
-            const box = document.getElementById('chatbotBox');
-            box.style.display = box.style.display === 'block' ? 'none' : 'block';
+        // Timer Functionality
+        let timerInterval;
+        let timeLeft = 55 * 60; // 55 minutes in seconds
+        let timerRunning = false;
+
+        function toggleTimer() {
+            const timerDisplay = document.getElementById('interviewTimer');
+            const timerBtn = document.getElementById('timerBtn');
+
+            if (!timerRunning) {
+                timerRunning = true;
+                timerBtn.innerText = "Pause";
+                timerBtn.classList.replace('bg-slate-700', 'bg-amber-600');
+
+                timerInterval = setInterval(() => {
+                    if (timeLeft > 0) {
+                        timeLeft--;
+                        let minutes = Math.floor(timeLeft / 60);
+                        let seconds = timeLeft % 60;
+                        timerDisplay.innerText = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                    } else {
+                        clearInterval(timerInterval);
+                        timerDisplay.innerText = "Time's Up!";
+                        timerBtn.innerText = "Done";
+                        timerRunning = false;
+                    }
+                }, 1000);
+            } else {
+                timerRunning = false;
+                clearInterval(timerInterval);
+                timerBtn.innerText = "Resume";
+                timerBtn.classList.replace('bg-amber-600', 'bg-slate-700');
+            }
         }
     </script>
-
 </body>
 </html>
